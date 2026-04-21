@@ -14,20 +14,20 @@
       --secondary: #1f9d63;
       --accent: #f4b728;
       --light-bg: #f3f4f7;
-      --card-bg: #e9ebef;
       --text-dark: #1d1d1f;
-      --muted: #6c757d;
       --border: #d0d4db;
       --progress: #2d8fd5;
     }
 
     * {
       font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
     }
 
     body {
       background: #eef1f5;
       color: var(--text-dark);
+      margin: 0;
     }
 
     .hero {
@@ -94,7 +94,7 @@
 
     .hero p.lead {
       color: #333;
-      font-size: 1.12rem;
+      font-size: 1.08rem;
       max-width: 700px;
     }
 
@@ -159,7 +159,7 @@
 
     .progress.custom-progress {
       height: 18px;
-      width: 240px;
+      width: 260px;
       border-radius: 30px;
       background: #dfe6ee;
       overflow: hidden;
@@ -169,6 +169,7 @@
     .progress-bar {
       background: var(--progress);
       font-weight: 700;
+      transition: width .3s ease;
     }
 
     .module-card {
@@ -204,6 +205,7 @@
       border-bottom: 1px solid var(--border);
       cursor: pointer;
       transition: .2s ease;
+      position: relative;
     }
 
     .course-item:hover {
@@ -228,10 +230,12 @@
       margin-top: 4px;
       background: #fff;
       color: #111;
+      font-weight: 700;
     }
 
-    .check.completed {
-      border-color: #6c757d;
+    .course-item.done .check {
+      border-color: #28a745;
+      color: #28a745;
     }
 
     .item-content {
@@ -240,7 +244,7 @@
 
     .item-title {
       font-weight: 800;
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       line-height: 1.05;
       margin-bottom: 8px;
       text-transform: uppercase;
@@ -301,11 +305,33 @@
 
     .modal-body ul {
       padding-left: 1.2rem;
-      margin-bottom: 0;
     }
 
-    .modal-body li {
-      margin-bottom: 8px;
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-custom {
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #1b7f38;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .9rem;
+      margin-top: 10px;
+    }
+
+    .reset-box {
+      margin-top: 10px;
     }
 
     @media (max-width: 991px) {
@@ -314,7 +340,7 @@
       }
 
       .item-title {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
     }
   </style>
@@ -357,100 +383,63 @@
     </section>
 
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
-      <h3 class="section-title mb-0">CONTEÚDO DO CURSO <small>(Clique nos blocos para detalhes)</small></h3>
+      <div>
+        <h3 class="section-title mb-0">CONTEÚDO DO CURSO <small>(Clique para detalhes)</small></h3>
+        <div class="reset-box">
+          <button class="btn btn-outline-secondary btn-sm" onclick="resetProgress()">Resetar progresso</button>
+        </div>
+      </div>
       <div class="progress-wrapper">
         <div class="progress custom-progress">
-          <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+          <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;">0%</div>
         </div>
-        <div class="fw-semibold fs-5">70% Concluído</div>
+        <div class="fw-semibold fs-5" id="progressText">0% Concluído</div>
       </div>
     </div>
 
     <div class="row g-4">
       <div class="col-lg-6">
         <div class="module-card">
-          <div class="module-header">MÓDULO 1 – Conscientização e Fundamentos <span>(Clique para detalhes)</span></div>
+          <div class="module-header">MÓDULO 1 – Conscientização e Introdução à Libras <span>(Clique para detalhes)</span></div>
 
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Inclusão no Ambiente Corporativo"
-               data-content="Inclusão no ambiente corporativo é o processo de estruturar a organização para receber, integrar e desenvolver profissionais surdos com equidade. Envolve garantir autonomia, acesso à informação e condições adequadas para o desempenho das atividades. Não se trata apenas de contratar, mas de assegurar participação plena em todas as etapas da jornada do colaborador. Exemplos práticos: entrevistas com apoio de intérprete, divulgação de vagas com recursos acessíveis, uso de ferramentas digitais, treinamentos com recursos visuais e compartilhamento de informações internas de forma acessível.">
-            <div class="check completed">✔</div>
-            <div class="item-content">
-              <div class="item-title">Inclusão no Ambiente Corporativo</div>
-              <p class="item-text">Estruture a organização para receber, integrar e desenvolver profissionais surdos com equidade.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Conceito de Acessibilidade Comunicacional"
-               data-content="A acessibilidade comunicacional refere-se à eliminação de barreiras que dificultam ou impedem a compreensão das informações por diferentes públicos, especialmente pessoas surdas. No ambiente corporativo, significa garantir que todas as mensagens sejam transmitidas de maneira clara, acessível e compreensível. Exemplos: uso de legendas em vídeos, recursos visuais em apresentações, intérprete de Libras em reuniões e eventos, tecnologias assistivas e sinalizações visuais para avisos e alertas.">
-            <div class="check"></div>
-            <div class="item-content">
-              <div class="item-title">Conceito de Acessibilidade Comunicacional</div>
-              <p class="item-text">Garanta que as informações sejam claras, acessíveis e compreensíveis para todos.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Introdução à Libras"
-               data-content="A Libras é a língua utilizada pela comunidade surda no Brasil. Trata-se de uma língua de modalidade visual-espacial, com estrutura gramatical própria, independente da língua portuguesa. Não deve ser confundida com mímica ou gestos improvisados. A Libras foi reconhecida pela Lei nº 10.436/2002 e regulamentada pelo Decreto nº 5.626/2005. O conhecimento básico sobre Libras contribui para a redução de barreiras na comunicação, interações mais respeitosas e maior integração de profissionais surdos na equipe.">
-            <div class="check"></div>
+          <div class="course-item" data-id="intro-libras" onclick="openTopic('intro-libras')">
+            <div class="check" id="check-intro-libras"></div>
             <div class="item-content">
               <div class="item-title">Introdução à Libras</div>
-              <p class="item-text">Conheça a língua, sua base legal e sua importância no ambiente profissional.</p>
+              <p class="item-text">Conheça o conceito da Libras, sua base legal e sua importância no contexto profissional.</p>
               <div class="mini-tags">
                 <span class="mini-tag">Lei 10.436/2002</span>
-                <span class="mini-tag">Visual-espacial</span>
-                <span class="mini-tag">Alfabeto manual</span>
+                <span class="mini-tag">Datilologia</span>
+                <span class="mini-tag">Base inicial</span>
               </div>
-              <img src="IMG/alfabeto.jpg" alt="Alfabeto manual em Libras" class="item-image">
+              <img src="img/alfabeto.jpg" alt="Alfabeto manual em Libras" class="item-image">
             </div>
             <div class="arrow">›</div>
           </div>
 
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Cultura Organizacional Inclusiva"
-               data-content="Cultura organizacional inclusiva é aquela em que a diversidade e a inclusão estão incorporadas aos valores, práticas e decisões da empresa. Não se limita ao cumprimento de exigências legais, mas se reflete no comportamento das lideranças e na rotina das equipes. Ações possíveis: palestras e sensibilização, workshops básicos de Libras, grupos de afinidade, capacitação de lideranças e inclusão do tema acessibilidade em treinamentos corporativos. Impactos: melhoria do clima, maior retenção de talentos, fortalecimento da marca empregadora e estímulo à inovação.">
-            <div class="check"></div>
+          <div class="course-item" data-id="inclusao-corporativa" onclick="openTopic('inclusao-corporativa')">
+            <div class="check" id="check-inclusao-corporativa"></div>
+            <div class="item-content">
+              <div class="item-title">Inclusão no Ambiente Corporativo</div>
+              <p class="item-text">Entenda como estruturar a organização para receber e integrar profissionais surdos com equidade.</p>
+            </div>
+            <div class="arrow">›</div>
+          </div>
+
+          <div class="course-item" data-id="acessibilidade-comunicacional" onclick="openTopic('acessibilidade-comunicacional')">
+            <div class="check" id="check-acessibilidade-comunicacional"></div>
+            <div class="item-content">
+              <div class="item-title">Conceito de Acessibilidade Comunicacional</div>
+              <p class="item-text">Elimine barreiras e garanta que todas as mensagens sejam compreendidas por todos.</p>
+            </div>
+            <div class="arrow">›</div>
+          </div>
+
+          <div class="course-item" data-id="cultura-inclusiva" onclick="openTopic('cultura-inclusiva')">
+            <div class="check" id="check-cultura-inclusiva"></div>
             <div class="item-content">
               <div class="item-title">Cultura Organizacional Inclusiva</div>
-              <p class="item-text">Transforme a inclusão em prática diária da empresa, e não em ação pontual.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Barreiras Comunicacionais"
-               data-content="Barreiras comunicacionais surgem quando a informação não chega de forma acessível. Isso pode acontecer pela ausência de Libras, falta de legendas, excesso de ruído, comunicação pouco visual ou falta de preparo da equipe. Identificar e reduzir essas barreiras é essencial para promover participação plena e equidade no ambiente de trabalho.">
-            <div class="check"></div>
-            <div class="item-content">
-              <div class="item-title">Barreiras Comunicacionais</div>
-              <p class="item-text">Identifique obstáculos que impedem a compreensão e a participação plena no trabalho.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Papel da Tecnologia na Inclusão"
-               data-content="A tecnologia pode aproximar pessoas e reduzir barreiras por meio de aplicativos, legendas automáticas, ferramentas de transcrição, plataformas acessíveis e recursos visuais. Seu uso, combinado com boas práticas inclusivas, fortalece a acessibilidade e amplia a participação de pessoas surdas no ambiente corporativo.">
-            <div class="check"></div>
-            <div class="item-content">
-              <div class="item-title">Papel da Tecnologia na Inclusão</div>
-              <p class="item-text">Use recursos digitais para tornar a comunicação mais acessível e eficiente.</p>
+              <p class="item-text">Transforme a inclusão em valor, prática e rotina dentro da empresa.</p>
             </div>
             <div class="arrow">›</div>
           </div>
@@ -461,104 +450,53 @@
         <div class="module-card">
           <div class="module-header">MÓDULO 2 – Comunicação e Tecnologias Acessíveis <span>(Clique para detalhes)</span></div>
 
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Conceito de Comunicação Inclusiva"
-               data-content="Comunicação inclusiva consiste na adaptação intencional da forma e do conteúdo das mensagens para garantir que todos os colaboradores compreendam a informação, independentemente de suas condições de comunicação. No contexto de pessoas surdas, isso envolve priorizar clareza, objetividade e recursos visuais como apoio à transmissão da mensagem.">
-            <div class="check"></div>
+          <div class="course-item" data-id="comunicacao-inclusiva" onclick="openTopic('comunicacao-inclusiva')">
+            <div class="check" id="check-comunicacao-inclusiva"></div>
             <div class="item-content">
               <div class="item-title">Conceito de Comunicação Inclusiva</div>
-              <p class="item-text">Torne as mensagens compreensíveis para todos com clareza, objetividade e apoio visual.</p>
+              <p class="item-text">Adapte forma e conteúdo para tornar a informação acessível e compreensível.</p>
             </div>
             <div class="arrow">›</div>
           </div>
 
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Estratégias de Comunicação"
-               data-content="Checklist prático: mantenha contato visual com a pessoa durante a comunicação; posicione-se em locais bem iluminados; fale com clareza e velocidade natural; use apoio visual, anotações, aplicativos de texto e apresentações sempre que necessário. A comunicação eficaz depende da combinação entre clareza, visibilidade e validação do entendimento.">
-            <div class="check"></div>
+          <div class="course-item" data-id="estrategias-comunicacao" onclick="openTopic('estrategias-comunicacao')">
+            <div class="check" id="check-estrategias-comunicacao"></div>
             <div class="item-content">
               <div class="item-title">Estratégias de Comunicação</div>
-              <p class="item-text">Aplique contato visual, boa iluminação, clareza na fala e apoio visual.</p>
+              <p class="item-text">Use contato visual, iluminação adequada, clareza na fala e apoio visual.</p>
               <div class="mini-tags">
                 <span class="mini-tag">Contato visual</span>
-                <span class="mini-tag">Iluminação</span>
+                <span class="mini-tag">Clareza</span>
                 <span class="mini-tag">Apoio visual</span>
               </div>
             </div>
             <div class="arrow">›</div>
           </div>
 
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Tecnologias Assistivas na Comunicação"
-               data-content="Tecnologias assistivas são recursos digitais ou físicos que atuam como apoio à comunicação entre pessoas surdas e ouvintes, reduzindo barreiras e ampliando o acesso à informação no ambiente corporativo. Sugestões para o trabalho: Google Meet e Microsoft Teams com legendas automáticas, Hand Talk para interações rápidas, sistemas de alerta visual e ferramentas de transcrição automática.">
-            <div class="check completed">✔</div>
+          <div class="course-item" data-id="tecnologias-assistivas" onclick="openTopic('tecnologias-assistivas')">
+            <div class="check" id="check-tecnologias-assistivas"></div>
             <div class="item-content">
               <div class="item-title">Tecnologias Assistivas na Comunicação</div>
-              <p class="item-text">Conheça ferramentas que ajudam a reduzir barreiras e ampliar o acesso à informação.</p>
+              <p class="item-text">Conheça ferramentas que ajudam a reduzir barreiras no ambiente corporativo.</p>
             </div>
             <div class="arrow">›</div>
           </div>
 
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Aplicação Prática com o Hand Talk"
-               data-content="O Hand Talk é um aplicativo de tecnologia assistiva que realiza a tradução de textos e áudios para Libras por meio de avatares virtuais, como Hugo e Maya. A ferramenta serve como apoio à comunicação básica e ao estudo, contribuindo para a compreensão de conteúdos escritos ou falados em situações do dia a dia. No ambiente corporativo, pode ser usado em comunicações rápidas, instruções simples, atendimentos iniciais e interações pontuais.">
-            <div class="check"></div>
+          <div class="course-item" data-id="handtalk" onclick="openTopic('handtalk')">
+            <div class="check" id="check-handtalk"></div>
             <div class="item-content">
-              <div class="item-title">Aplicação Prática com o Hand Talk</div>
-              <p class="item-text">Veja como o aplicativo pode apoiar a tradução e a comunicação acessível.</p>
-              <img src="IMG/handtalk.jpg" alt="Aplicativo Hand Talk" class="item-image">
+              <div class="item-title">Explicação do Aplicativo e Aplicação Prática: Hand Talk</div>
+              <p class="item-text">Veja como o app pode apoiar a tradução de textos e áudios para Libras.</p>
+              <img src="img/handtalk.jpg" alt="Aplicativo Hand Talk" class="item-image">
             </div>
             <div class="arrow">›</div>
           </div>
 
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Uso do Aplicativo no Ambiente Corporativo"
-               data-content="O uso do aplicativo pode apoiar reuniões, atendimentos, integração de equipe, treinamentos internos e comunicações rápidas. O Hand Talk é um recurso complementar de acessibilidade e não substitui intérpretes de Libras em situações formais ou de maior complexidade comunicacional.">
-            <div class="check"></div>
+          <div class="course-item" data-id="avaliacao" onclick="openTopic('avaliacao')">
+            <div class="check" id="check-avaliacao"></div>
             <div class="item-content">
-              <div class="item-title">Uso do Aplicativo no Ambiente Corporativo</div>
-              <p class="item-text">Aplique o recurso em reuniões, atendimentos e rotinas corporativas com mais acessibilidade.</p>
-              <div class="mini-tags">
-                <span class="mini-tag">Reuniões</span>
-                <span class="mini-tag">Equipe</span>
-                <span class="mini-tag">Atendimento</span>
-              </div>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Atividades Práticas"
-               data-content="Atividade 1: digite seu nome no Hand Talk e observe a tradução em Libras. Atividade 2: traduza expressões como Bom dia e Tudo bem. Atividade 3: traduza palavras do contexto profissional, como Reunião e E-mail. Atividade 4: utilize a função de áudio e fale a expressão Obrigado para observar a tradução em Libras.">
-            <div class="check"></div>
-            <div class="item-content">
-              <div class="item-title">Atividades Práticas</div>
-              <p class="item-text">Pratique com nome em Libras, cumprimentos, palavras do trabalho e tradução por áudio.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item"
-               data-bs-toggle="modal"
-               data-bs-target="#itemModal"
-               data-title="Limitação do Treinamento"
-               data-content="O treinamento oferece base inicial, mas a inclusão exige continuidade, prática, escuta ativa e compromisso da organização ao longo do tempo. A tecnologia amplia a acessibilidade, mas sua efetividade depende da combinação com práticas inclusivas no dia a dia.">
-            <div class="check"></div>
-            <div class="item-content">
-              <div class="item-title">Limitação do Treinamento</div>
-              <p class="item-text">Entenda que a inclusão é um processo contínuo, e não um evento isolado.</p>
+              <div class="item-title">Módulo 3 – Avaliação do Treinamento</div>
+              <p class="item-text">Questionário final para verificar o nível de compreensão dos participantes.</p>
             </div>
             <div class="arrow">›</div>
           </div>
@@ -577,7 +515,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body p-4">
-          <p class="mb-0 fs-5" id="modalItemContent">Conteúdo do tópico.</p>
+          <div id="modalItemContent"></div>
+          <div class="action-buttons" id="modalActions"></div>
+          <div id="modalStatus"></div>
         </div>
       </div>
     </div>
@@ -592,17 +532,17 @@
         </div>
         <div class="modal-body p-4">
           <p class="mb-3">
-            Este treinamento foi criado para promover a inclusão de pessoas surdas no ambiente corporativo por meio de conteúdos sobre Libras, comunicação inclusiva e tecnologias acessíveis.
+            Este treinamento foi criado para promover o contato inicial com a Libras, estimular práticas de comunicação inclusiva e apresentar tecnologias assistivas aplicáveis ao ambiente corporativo.
           </p>
           <ul>
-            <li>Fundamentos da Libras e inclusão no trabalho</li>
+            <li>Introdução à Libras</li>
+            <li>Inclusão no ambiente corporativo</li>
             <li>Acessibilidade comunicacional</li>
-            <li>Estratégias práticas de comunicação</li>
-            <li>Tecnologias assistivas e uso do Hand Talk</li>
+            <li>Comunicação inclusiva</li>
+            <li>Tecnologias assistivas</li>
+            <li>Aplicação prática com Hand Talk</li>
           </ul>
-          <p class="mt-3 mb-0">
-            Clique nos blocos do curso para visualizar os detalhes de cada tema.
-          </p>
+          <p class="mt-3 mb-0">Clique nos blocos do curso para avançar no conteúdo e acompanhar sua porcentagem.</p>
         </div>
       </div>
     </div>
@@ -610,16 +550,250 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const itemModal = document.getElementById('itemModal');
+    const topics = {
+      "intro-libras": {
+        title: "Introdução à Libras",
+        content: `
+          <p><strong>A Libras (Língua Brasileira de Sinais)</strong> é a língua utilizada pela comunidade surda no Brasil. Trata-se de uma língua de modalidade visual-espacial, com estrutura gramatical própria, independente da língua portuguesa.</p>
+          <p>Não deve ser confundida com mímica ou gestos improvisados, pois possui regras linguísticas definidas, incluindo formação de sinais, expressões faciais e organização sintática.</p>
+          <p><strong>Base legal:</strong> a Libras foi reconhecida como meio legal de comunicação e expressão pela Lei nº 10.436/2002, sendo regulamentada pelo Decreto nº 5.626/2005.</p>
+          <p><strong>Aplicação no contexto profissional:</strong></p>
+          <ul>
+            <li>Redução de barreiras na comunicação</li>
+            <li>Interações mais respeitosas e eficazes</li>
+            <li>Maior integração de profissionais surdos na equipe</li>
+          </ul>
+          <p>A imagem do alfabeto manual em Libras pode ser usada para soletração de nomes próprios, siglas e palavras sem sinal específico.</p>
+        `,
+        links: [
+          { label: "Ver vídeo do alfabeto em Libras", url: "https://youtu.be/OiWI8feOQes", type: "external" }
+        ]
+      },
+      "inclusao-corporativa": {
+        title: "Inclusão no Ambiente Corporativo",
+        content: `
+          <p>Inclusão no ambiente corporativo é o processo de estruturar a organização para receber, integrar e desenvolver profissionais surdos com equidade. Envolve garantir autonomia, acesso à informação e condições adequadas para o desempenho das atividades.</p>
+          <p>Não se trata apenas de contratar, mas de assegurar participação plena em todas as etapas da jornada do colaborador.</p>
+          <p><strong>Exemplos práticos:</strong></p>
+          <ul>
+            <li>Entrevistas com apoio de intérprete de Libras, quando necessário</li>
+            <li>Divulgação de vagas com recursos acessíveis, como vídeos em Libras</li>
+            <li>Uso de ferramentas digitais que favoreçam a comunicação</li>
+            <li>Adaptação de treinamentos e integrações com recursos visuais</li>
+            <li>Compartilhamento de informações internas de forma acessível</li>
+          </ul>
+          <p><strong>Destaque:</strong> a inclusão efetiva depende de ajustes nos processos e na comunicação, não apenas da contratação de profissionais surdos.</p>
+        `
+      },
+      "acessibilidade-comunicacional": {
+        title: "Conceito de Acessibilidade Comunicacional",
+        content: `
+          <p>A acessibilidade comunicacional refere-se à eliminação de barreiras que dificultam ou impedem a compreensão das informações por diferentes públicos, especialmente pessoas surdas.</p>
+          <p>No ambiente corporativo, isso significa garantir que todas as mensagens — formais e informais — sejam transmitidas de maneira clara, acessível e compreensível, independentemente do canal utilizado.</p>
+          <p><strong>Exemplos de aplicação:</strong></p>
+          <ul>
+            <li>Uso de legendas em vídeos institucionais e treinamentos</li>
+            <li>Inserção de recursos visuais em apresentações e comunicados</li>
+            <li>Disponibilização de intérprete de Libras em reuniões e eventos</li>
+            <li>Uso de tecnologias assistivas e transcrição automática</li>
+            <li>Adoção de sinalizações visuais para avisos e alertas</li>
+          </ul>
+          <p><strong>Destaque:</strong> a comunicação só é efetiva quando pode ser compreendida por todos os colaboradores.</p>
+        `
+      },
+      "cultura-inclusiva": {
+        title: "Cultura Organizacional Inclusiva",
+        content: `
+          <p>Cultura organizacional inclusiva é aquela em que a diversidade e a inclusão estão incorporadas aos valores, práticas e decisões da empresa.</p>
+          <p>Nesse contexto, a inclusão de pessoas surdas é tratada de forma estruturada, garantindo participação, desenvolvimento e reconhecimento profissional.</p>
+          <p><strong>Exemplos de ações:</strong></p>
+          <ul>
+            <li>Palestras e ações de sensibilização sobre inclusão</li>
+            <li>Workshops básicos de Libras para colaboradores</li>
+            <li>Criação de grupos de afinidade ou comitês de diversidade</li>
+            <li>Capacitação de lideranças para gestão de equipes inclusivas</li>
+            <li>Inclusão do tema acessibilidade em treinamentos corporativos</li>
+          </ul>
+          <p><strong>Impactos organizacionais:</strong></p>
+          <ul>
+            <li>Melhoria do clima e do engajamento das equipes</li>
+            <li>Aumento da retenção de talentos</li>
+            <li>Fortalecimento da marca empregadora</li>
+            <li>Estímulo à inovação</li>
+          </ul>
+        `
+      },
+      "comunicacao-inclusiva": {
+        title: "Conceito de Comunicação Inclusiva",
+        content: `
+          <p>Comunicação inclusiva consiste na adaptação intencional da forma e do conteúdo das mensagens para garantir que todos os colaboradores compreendam a informação, independentemente de suas condições de comunicação.</p>
+          <p>No contexto de pessoas surdas, isso envolve priorizar clareza, objetividade e recursos visuais como apoio à transmissão da mensagem.</p>
+          <p><strong>Exemplo prático:</strong> em reuniões, recomenda-se o uso de slides, tópicos objetivos e elementos gráficos que facilitem a compreensão e o acompanhamento por parte do colaborador surdo.</p>
+          <p><strong>Destaque:</strong> comunicar de forma inclusiva não é simplificar o conteúdo, mas torná-lo acessível e compreensível para todos.</p>
+        `
+      },
+      "estrategias-comunicacao": {
+        title: "Estratégias de Comunicação",
+        content: `
+          <p><strong>Checklist prático:</strong></p>
+          <ul>
+            <li><strong>Contato visual:</strong> mantenha o olhar direcionado à pessoa durante a comunicação.</li>
+            <li><strong>Iluminação adequada:</strong> posicione-se em locais bem iluminados.</li>
+            <li><strong>Clareza na fala:</strong> utilize velocidade natural, com boa articulação.</li>
+            <li><strong>Apoio visual:</strong> utilize anotações, aplicativos de texto, apresentações e outros recursos.</li>
+          </ul>
+          <p><strong>Destaque:</strong> a comunicação eficaz depende da combinação entre clareza, visibilidade e validação do entendimento.</p>
+        `
+      },
+      "tecnologias-assistivas": {
+        title: "Tecnologias Assistivas na Comunicação",
+        content: `
+          <p>Tecnologias assistivas são recursos digitais ou físicos que atuam como apoio à comunicação entre pessoas surdas e ouvintes, reduzindo barreiras e ampliando o acesso à informação no ambiente corporativo.</p>
+          <p>Essas ferramentas não substituem práticas inclusivas, mas funcionam como suporte para tornar a comunicação mais acessível e eficiente.</p>
+          <p><strong>Sugestões para aplicação no trabalho:</strong></p>
+          <ul>
+            <li>Google Meet / Microsoft Teams com legendas automáticas</li>
+            <li>Hand Talk para tradução de texto e voz para Libras</li>
+            <li>Sistemas de alerta visual em situações de emergência</li>
+            <li>Ferramentas de transcrição automática para reuniões</li>
+          </ul>
+          <p><strong>Destaque:</strong> a tecnologia amplia a acessibilidade, mas sua efetividade depende da combinação com práticas inclusivas no dia a dia.</p>
+        `
+      },
+      "handtalk": {
+        title: "Explicação do Aplicativo e Aplicação Prática: Hand Talk",
+        content: `
+          <p>O <strong>Hand Talk</strong> é um aplicativo de tecnologia assistiva que realiza a tradução de textos e áudios para Libras, por meio de avatares virtuais, como Hugo e Maya.</p>
+          <p>A ferramenta funciona como apoio à comunicação básica e como recurso de estudo, contribuindo para a compreensão de conteúdos escritos ou falados em situações do dia a dia.</p>
+          <p><strong>Aplicação prática no ambiente corporativo:</strong></p>
+          <ul>
+            <li>Apoio em comunicações rápidas e objetivas</li>
+            <li>Auxílio na compreensão de instruções simples</li>
+            <li>Suporte em atendimentos iniciais e interações pontuais</li>
+            <li>Reforço de informações em formato acessível</li>
+          </ul>
+          <p><strong>Destaque:</strong> o Hand Talk é um recurso complementar de acessibilidade e não substitui intérpretes de Libras em situações formais ou complexas.</p>
+          <p><strong>Atividades práticas:</strong></p>
+          <ul>
+            <li>Digite seu nome e observe a tradução em Libras</li>
+            <li>Traduza expressões como “Bom dia” e “Tudo bem?”</li>
+            <li>Traduza palavras do contexto profissional, como “Reunião” e “E-mail”</li>
+            <li>Use a função de áudio para traduzir a expressão “Obrigado”</li>
+          </ul>
+        `,
+        links: [
+          { label: "Abrir aplicativo Hand Talk", url: "https://play.google.com/store/apps/details?id=br.com.handtalk", type: "external" }
+        ]
+      },
+      "avaliacao": {
+        title: "Módulo 3 – Avaliação do Treinamento",
+        content: `
+          <p><strong>Questionário de Avaliação (Múltipla Escolha)</strong></p>
+          <p>Objetivo: verificar o nível de compreensão dos participantes sobre os conteúdos abordados no treinamento, incluindo inclusão, Libras básica e uso de tecnologias acessíveis.</p>
+          <p>Você pode substituir o link abaixo pelo formulário final real do grupo.</p>
+        `,
+        links: [
+          { label: "Abrir formulário de avaliação", url: "https://forms.gle/SEU-LINK-AQUI", type: "external" }
+        ]
+      }
+    };
 
-    itemModal.addEventListener('show.bs.modal', function (event) {
-      const button = event.relatedTarget;
-      const title = button.getAttribute('data-title');
-      const content = button.getAttribute('data-content');
+    const topicIds = Object.keys(topics);
 
-      document.getElementById('modalItemTitle').textContent = title;
-      document.getElementById('modalItemContent').textContent = content;
-    });
+    function getDoneTopics() {
+      return JSON.parse(localStorage.getItem("conectaLibrasDone")) || [];
+    }
+
+    function saveDoneTopics(done) {
+      localStorage.setItem("conectaLibrasDone", JSON.stringify(done));
+    }
+
+    function markAsDone(id) {
+      const done = getDoneTopics();
+      if (!done.includes(id)) {
+        done.push(id);
+        saveDoneTopics(done);
+      }
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const done = getDoneTopics();
+      const total = topicIds.length;
+      const percent = Math.round((done.length / total) * 100);
+
+      document.getElementById("progressBar").style.width = percent + "%";
+      document.getElementById("progressBar").textContent = percent + "%";
+      document.getElementById("progressText").textContent = percent + "% Concluído";
+
+      topicIds.forEach(id => {
+        const item = document.querySelector(`[data-id="${id}"]`);
+        const check = document.getElementById(`check-${id}`);
+        if (done.includes(id)) {
+          item.classList.add("done");
+          check.textContent = "✔";
+        } else {
+          item.classList.remove("done");
+          check.textContent = "";
+        }
+      });
+    }
+
+    function openTopic(id) {
+      const topic = topics[id];
+      document.getElementById("modalItemTitle").textContent = topic.title;
+      document.getElementById("modalItemContent").innerHTML = topic.content;
+
+      const actions = document.getElementById("modalActions");
+      actions.innerHTML = "";
+
+      const markBtn = document.createElement("button");
+      markBtn.className = "btn btn-success btn-custom";
+      markBtn.textContent = "Marcar como visto";
+      markBtn.onclick = () => {
+        markAsDone(id);
+        renderStatus(id);
+      };
+      actions.appendChild(markBtn);
+
+      if (topic.links) {
+        topic.links.forEach(link => {
+          const a = document.createElement("a");
+          a.href = link.url;
+          a.target = "_blank";
+          a.className = "btn btn-primary btn-custom";
+          a.textContent = link.label;
+          a.onclick = () => {
+            markAsDone(id);
+            setTimeout(() => renderStatus(id), 200);
+          };
+          actions.appendChild(a);
+        });
+      }
+
+      markAsDone(id);
+      renderStatus(id);
+
+      const modal = new bootstrap.Modal(document.getElementById("itemModal"));
+      modal.show();
+    }
+
+    function renderStatus(id) {
+      const done = getDoneTopics();
+      const status = document.getElementById("modalStatus");
+      if (done.includes(id)) {
+        status.innerHTML = `<div class="status-badge">Conteúdo visualizado</div>`;
+      } else {
+        status.innerHTML = "";
+      }
+    }
+
+    function resetProgress() {
+      localStorage.removeItem("conectaLibrasDone");
+      updateProgress();
+    }
+
+    updateProgress();
   </script>
 </body>
 </html>
