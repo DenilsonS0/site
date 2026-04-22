@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -11,88 +11,106 @@
 
   <style>
     :root {
-      --primary: #123d7a;
-      --secondary: #1f9d63;
-      --accent: #f4b728;
-      --light-bg: #f3f4f7;
-      --text-dark: #1d1d1f;
-      --border: #d0d4db;
-      --progress: #2d8fd5;
+      --azul: #103f7d;
+      --azul-escuro: #0b3567;
+      --verde: #28a85d;
+      --amarelo: #f4be24;
+      --texto: #26364f;
+      --cinza-bg: #f2f4f7;
+      --cinza-card: #ffffff;
+      --cinza-borda: #d8dee7;
+      --cinza-fraco: #eef2f6;
     }
 
     * {
-      font-family: 'Inter', sans-serif;
       box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background: #eef1f5;
-      color: var(--text-dark);
       margin: 0;
+      background: #f3f4f6;
+      color: var(--texto);
     }
 
-    /* ===== TOPO NOVO ===== */
-    .hero-top {
-      background: linear-gradient(90deg, #f7f8fa 0%, #f7f8fa 55%, #eef4f4 100%);
-      border-radius: 24px;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-      padding: 26px 28px;
+    .page-wrapper {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .hero-section {
+      background: linear-gradient(90deg, #eef4f8 0%, #eef4f8 55%, #edf4ef 100%);
+      border-bottom: 1px solid #dde5ed;
+      padding: 22px 0 10px;
+      position: relative;
       overflow: hidden;
-      border: 1px solid #e4e8ee;
-      position: relative;
     }
 
-    .hero-top::before {
+    .hero-section::before {
       content: "";
       position: absolute;
-      top: 16px;
-      left: 16px;
-      width: 80px;
-      height: 80px;
-      background-image: radial-gradient(#cfe0f6 1.2px, transparent 1.2px);
-      background-size: 10px 10px;
-      opacity: 0.8;
+      top: 18px;
+      left: 40px;
+      width: 120px;
+      height: 8px;
+      background: linear-gradient(90deg, #1787d7 0%, #27a95f 100%);
+      border-radius: 999px;
+      opacity: 0.9;
     }
 
-    .hero-top::after {
+    .hero-section::after {
       content: "";
       position: absolute;
-      top: 20px;
-      right: 18px;
-      width: 90px;
-      height: 90px;
-      background-image: radial-gradient(#d6e5f8 1.2px, transparent 1.2px);
-      background-size: 10px 10px;
-      opacity: 0.8;
+      top: 18px;
+      right: 40px;
+      width: 120px;
+      height: 8px;
+      background: linear-gradient(90deg, #1787d7 0%, #27a95f 100%);
+      border-radius: 999px;
+      opacity: 0.9;
     }
 
-    .hero-top-grid {
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      align-items: center;
-      gap: 30px;
-      position: relative;
-      z-index: 2;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: end;
+      gap: 20px;
+      min-height: 370px;
     }
 
-    .hero-brand {
-      margin-bottom: 18px;
+    .hero-left {
+      padding: 10px 0 20px;
     }
 
-    .hero-brand img {
-      max-width: 220px;
+    .top-brand-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      margin-bottom: 10px;
+    }
+
+    .brand-logo {
+      max-width: 170px;
       width: 100%;
       height: auto;
       display: block;
     }
 
+    .decor-line {
+      flex: 1;
+      height: 4px;
+      background: linear-gradient(90deg, #1787d7 0%, #27a95f 100%);
+      border-radius: 999px;
+      margin-top: 42px;
+      opacity: 0.9;
+    }
+
     .hero-label {
-      font-size: 0.95rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #173e82;
-      margin-bottom: 12px;
+      color: var(--azul);
+      font-size: 1.05rem;
+      font-weight: 900;
       text-transform: uppercase;
+      margin-bottom: 10px;
       position: relative;
       display: inline-block;
     }
@@ -100,268 +118,303 @@
     .hero-label::after {
       content: "";
       display: block;
-      width: 62px;
-      height: 3px;
-      background: #23a35b;
+      width: 66px;
+      height: 4px;
+      background: var(--verde);
       border-radius: 999px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 4vw, 4rem);
-      line-height: 1.06;
+      font-size: clamp(2rem, 3.2vw, 3.9rem);
+      line-height: 1.05;
       font-weight: 900;
-      color: #0f3b82;
-      margin-bottom: 18px;
+      color: var(--azul);
+      margin-bottom: 16px;
+      max-width: 900px;
     }
 
-    .hero-title .highlight {
-      color: #20a35d;
+    .hero-title .green {
+      color: var(--verde);
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      gap: 26px;
+      align-items: center;
     }
 
     .hero-description {
-      font-size: 1.05rem;
-      color: #31425d;
-      line-height: 1.6;
-      max-width: 620px;
-      margin-bottom: 22px;
+      font-size: 1.08rem;
+      line-height: 1.55;
+      margin: 0;
+      color: #28405f;
+      max-width: 720px;
     }
 
-    .hero-actions {
+    .hero-right-info {
       display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 12px;
+      align-items: stretch;
     }
 
     .hero-btn {
-      background: #f4bf2a;
+      background: var(--amarelo);
       color: #111;
       border: none;
-      border-radius: 14px;
-      padding: 16px 28px;
+      border-radius: 16px;
+      padding: 18px 20px;
       font-size: 1rem;
-      font-weight: 800;
-      box-shadow: 0 10px 20px rgba(244, 191, 42, 0.25);
+      font-weight: 900;
+      box-shadow: 0 8px 20px rgba(244, 190, 36, 0.25);
       transition: 0.25s ease;
+      width: 100%;
     }
 
     .hero-btn:hover {
-      background: #e7b11d;
+      background: #e4b11f;
       transform: translateY(-2px);
     }
 
-    .hero-info {
+    .hero-note {
       display: flex;
       align-items: center;
-      gap: 14px;
-      color: #24395e;
+      gap: 10px;
       font-size: 1rem;
-      max-width: 260px;
-      line-height: 1.35;
+      color: #23405f;
     }
 
-    .hero-info-icon {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-      border: 2px solid #27a95f;
-      color: #27a95f;
+    .hero-note-icon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
       border-radius: 50%;
+      border: 2px solid var(--verde);
+      color: var(--verde);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-weight: 800;
       background: #fff;
     }
 
-    .hero-visual {
-      position: relative;
-      min-height: 420px;
+    .hero-right {
       display: flex;
-      align-items: center;
       justify-content: center;
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      width: 430px;
-      height: 430px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.75);
-      box-shadow: inset 0 0 0 22px #edf1f4;
-    }
-
-    .hero-visual::after {
-      content: "";
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      border: 2px solid rgba(162, 205, 235, 0.45);
-    }
-
-    .hero-visual img {
+      align-items: end;
       position: relative;
-      z-index: 2;
+      min-height: 340px;
+    }
+
+    .hero-right img {
       max-width: 430px;
       width: 100%;
       height: auto;
       object-fit: contain;
+      display: block;
     }
 
-    /* ===== RESTANTE ===== */
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #111;
+    .main-content {
+      padding: 24px 0 40px;
     }
 
-    .section-title small {
+    .content-header {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .content-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--azul);
+      margin: 0;
+    }
+
+    .content-title small {
+      font-size: 0.7em;
       font-weight: 600;
-      color: #555;
+      color: #666;
     }
 
-    .progress-wrapper {
+    .reset-btn {
+      margin-top: 10px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .progress-side {
       display: flex;
       align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
     }
 
     .progress.custom-progress {
-      height: 18px;
-      width: 260px;
-      border-radius: 30px;
-      background: #dfe6ee;
+      width: 220px;
+      height: 20px;
+      background: #dfe5ec;
+      border-radius: 999px;
       overflow: hidden;
-      border: 1px solid #c6d1dc;
+      border: 1px solid #d5dde7;
     }
 
     .progress-bar {
-      background: var(--progress);
-      font-weight: 700;
+      background: linear-gradient(90deg, #1e8de2 0%, #2aac5f 100%);
+      font-weight: 800;
+      color: #fff;
       transition: width .3s ease;
+    }
+
+    .progress-text {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--azul);
+      white-space: nowrap;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
     }
 
     .module-card {
       background: #fff;
+      border: 1px solid #dce3ea;
       border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       overflow: hidden;
-      border: 1px solid #e5e7eb;
-      height: 100%;
+      box-shadow: 0 6px 18px rgba(23, 47, 84, 0.05);
     }
 
     .module-header {
-      background: #dfe3e8;
-      color: #111;
+      background: #f4f6f9;
+      color: var(--azul);
       padding: 16px 18px;
-      font-size: 1.28rem;
-      font-weight: 800;
-      line-height: 1.2;
+      font-size: 1.06rem;
+      font-weight: 900;
+      border-bottom: 1px solid #e0e6ed;
     }
 
     .module-header span {
-      font-weight: 600;
-      color: #444;
-      font-size: 1rem;
+      font-weight: 500;
+      color: #666;
     }
 
     .course-item {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 14px;
-      padding: 18px;
-      background: var(--light-bg);
-      border-bottom: 1px solid var(--border);
+      padding: 16px 16px;
+      background: #fff;
+      border-bottom: 1px solid #e6ebf0;
       cursor: pointer;
       transition: .2s ease;
-      position: relative;
-    }
-
-    .course-item:hover {
-      background: #e2e7ef;
-      transform: translateX(2px);
     }
 
     .course-item:last-child {
       border-bottom: none;
     }
 
+    .course-item:hover {
+      background: #f8fafc;
+    }
+
     .check {
-      width: 28px;
-      height: 28px;
-      min-width: 28px;
-      border: 2px solid #8592a3;
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border: 2px solid #7e8b9b;
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      margin-top: 4px;
+      font-size: .95rem;
+      color: #1f9d63;
       background: #fff;
-      color: #111;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .course-item.done .check {
-      border-color: #28a745;
-      color: #28a745;
+      border-color: #25a55d;
+      color: #25a55d;
+    }
+
+    .icon-circle {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+      border-radius: 50%;
+      background: #eaf2fa;
+      color: var(--azul);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
     }
 
     .item-content {
       flex: 1;
+      min-width: 0;
     }
 
     .item-title {
-      font-weight: 800;
-      font-size: 1.15rem;
-      line-height: 1.1;
-      margin-bottom: 8px;
+      font-size: 1rem;
+      font-weight: 900;
+      color: #193760;
+      margin-bottom: 4px;
       text-transform: uppercase;
+      line-height: 1.2;
     }
 
     .item-text {
-      color: #333;
       margin: 0;
+      color: #404f63;
       line-height: 1.35;
-    }
-
-    .arrow {
-      font-size: 1.9rem;
-      color: #8a93a0;
-      font-weight: 300;
-      line-height: 1;
-      margin-top: 2px;
+      font-size: 0.98rem;
     }
 
     .mini-tags {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 10px;
+      gap: 8px;
+      margin-top: 8px;
     }
 
     .mini-tag {
-      background: #fff;
-      border: 1px solid #ccd3dc;
+      background: #f1f4f7;
       border-radius: 999px;
       padding: 5px 10px;
-      font-size: .85rem;
+      font-size: .82rem;
       font-weight: 600;
-      color: #415161;
+      color: #5a6777;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      color: #6d7b8d;
+      line-height: 1;
+      margin-left: 4px;
+    }
+
+    .module-3-wrapper {
+      margin-top: 22px;
     }
 
     .footer-note {
-      color: #51606f;
-      font-weight: 600;
+      text-align: center;
+      margin-top: 16px;
+      color: var(--azul);
+      font-weight: 800;
     }
 
     .modal-header {
-      background: var(--primary);
+      background: var(--azul);
       color: #fff;
     }
 
@@ -369,15 +422,11 @@
       filter: invert(1);
     }
 
-    .modal-body ul {
-      padding-left: 1.2rem;
-    }
-
     .modal-image {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 14px;
+      border: 1px solid #dde4eb;
       margin: 16px 0;
-      border: 1px solid #d9dee5;
     }
 
     .action-buttons {
@@ -389,265 +438,317 @@
 
     .btn-custom {
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .status-badge {
       display: inline-block;
-      background: #e8f5e9;
-      color: #1b7f38;
-      padding: 6px 12px;
+      background: #e9f8ef;
+      color: #1d8c47;
+      padding: 7px 12px;
       border-radius: 999px;
-      font-weight: 700;
-      font-size: .9rem;
-      margin-top: 10px;
+      font-size: .92rem;
+      font-weight: 800;
+      margin-top: 12px;
     }
 
-    .reset-box {
-      margin-top: 10px;
-    }
-
-    .module-3-card {
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-      overflow: hidden;
-      border: 1px solid #e5e7eb;
-      margin-top: 24px;
-    }
-
-    @media (max-width: 991px) {
-      .hero-top-grid {
+    @media (max-width: 1199px) {
+      .hero-bottom {
         grid-template-columns: 1fr;
       }
 
-      .hero-visual {
+      .hero-right-info {
+        max-width: 420px;
+      }
+
+      .content-header {
+        grid-template-columns: 1fr;
+      }
+
+      .progress-side {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        align-items: center;
+      }
+
+      .hero-right {
         min-height: auto;
-        margin-top: 10px;
+        margin-top: 8px;
       }
 
-      .hero-visual::before {
-        width: 320px;
-        height: 320px;
+      .hero-right img {
+        max-width: 320px;
       }
 
-      .hero-visual::after {
-        width: 380px;
-        height: 380px;
+      .modules-grid {
+        grid-template-columns: 1fr;
       }
 
-      .hero-visual img {
-        max-width: 300px;
+      .top-brand-line {
+        gap: 18px;
       }
 
-      .hero-actions {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .item-title {
-        font-size: 1.02rem;
+      .brand-logo {
+        max-width: 140px;
       }
     }
 
     @media (max-width: 576px) {
-      .hero-top {
-        padding: 22px 18px;
-        border-radius: 20px;
+      .hero-section::before,
+      .hero-section::after {
+        display: none;
+      }
+
+      .hero-section {
+        padding-top: 18px;
+      }
+
+      .top-brand-line {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .decor-line {
+        width: 100%;
+        margin-top: 0;
       }
 
       .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       .hero-description {
-        font-size: 0.98rem;
+        font-size: 1rem;
       }
 
       .hero-btn {
-        width: 100%;
-        text-align: center;
+        font-size: .95rem;
+        padding: 16px 16px;
       }
 
-      .section-title {
-        font-size: 1.45rem;
+      .content-title {
+        font-size: 1.55rem;
+      }
+
+      .progress-side {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .progress.custom-progress {
+        width: 100%;
+        max-width: 280px;
       }
 
       .module-header {
-        font-size: 1.05rem;
+        font-size: 0.98rem;
+      }
+
+      .item-title {
+        font-size: 0.92rem;
+      }
+
+      .item-text {
+        font-size: 0.92rem;
+      }
+
+      .icon-circle {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        font-size: 1.1rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container py-4 py-lg-5">
+  <div class="page-wrapper">
 
-    <!-- TOPO -->
-    <section class="hero-top mb-4">
-      <div class="hero-top-grid">
-        <div>
-          <div class="hero-brand">
-            <img src="img/logo-conecta.png" alt="Logo Conecta Libras">
-          </div>
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="top-brand-line">
+              <img src="img/logo-conecta.png" alt="Logo Conecta Libras" class="brand-logo">
+              <div class="decor-line"></div>
+            </div>
 
-          <div class="hero-label">Treinamento:</div>
+            <div class="hero-label">TREINAMENTO:</div>
 
-          <h1 class="hero-title">
-            Incluindo Pessoas Surdas <br>
-            no <span class="highlight">Ambiente Corporativo</span>
-          </h1>
+            <h1 class="hero-title">
+              Incluindo Pessoas Surdas no <span class="green">Ambiente Corporativo</span>
+            </h1>
 
-          <p class="hero-description">
-            Capacite sua equipe para criar um ambiente mais inclusivo e acessível.
-            Aprenda Libras básica, comunicação inclusiva e o uso de tecnologias assistivas.
-          </p>
+            <div class="hero-bottom">
+              <p class="hero-description">
+                Capacite sua equipe para criar um ambiente mais inclusivo e acessível.
+                Aprenda Libras básica, comunicação inclusiva e o uso de tecnologias assistivas.
+              </p>
 
-          <div class="hero-actions">
-            <button class="hero-btn" data-bs-toggle="modal" data-bs-target="#modalTreinamento">
-              CONTEÚDO DO TREINAMENTO →
-            </button>
+              <div class="hero-right-info">
+                <button class="hero-btn" data-bs-toggle="modal" data-bs-target="#modalTreinamento">
+                  CONTEÚDO DO TREINAMENTO →
+                </button>
 
-            <div class="hero-info">
-              <div class="hero-info-icon">✓</div>
-              <div>Libras básica e tecnologias acessíveis para comunicação</div>
+                <div class="hero-note">
+                  <div class="hero-note-icon">✓</div>
+                  <div>Libras básica e tecnologias acessíveis para comunicação</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="hero-visual">
-          <img src="img/topo-personagem.png" alt="Ilustração Conecta Libras">
+          <div class="hero-right">
+            <img src="img/topo-personagem.png" alt="Ilustração Conecta Libras">
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
-      <div>
-        <h3 class="section-title mb-0">CONTEÚDO DO CURSO <small>(Clique para detalhes)</small></h3>
-        <div class="reset-box">
-          <button class="btn btn-outline-secondary btn-sm" onclick="resetProgress()">Resetar progresso</button>
+    <section class="main-content">
+      <div class="container">
+
+        <div class="content-header">
+          <div>
+            <h2 class="content-title">CONTEÚDO DO CURSO <small>(Clique para detalhes)</small></h2>
+            <button class="btn btn-outline-secondary btn-sm reset-btn" onclick="resetProgress()">Resetar progresso</button>
+          </div>
+
+          <div class="progress-side">
+            <div class="progress custom-progress">
+              <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;">0%</div>
+            </div>
+            <div class="progress-text" id="progressText">0% Concluído</div>
+          </div>
         </div>
-      </div>
 
-      <div class="progress-wrapper">
-        <div class="progress custom-progress">
-          <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;">0%</div>
-        </div>
-        <div class="fw-semibold fs-5" id="progressText">0% Concluído</div>
-      </div>
-    </div>
+        <div class="modules-grid">
+          <div class="module-card">
+            <div class="module-header">
+              MÓDULO 1 – Conscientização e Introdução à Libras <span>(Clique para detalhes)</span>
+            </div>
 
-    <div class="row g-4">
-      <div class="col-lg-6">
-        <div class="module-card">
-          <div class="module-header">MÓDULO 1 – Conscientização e Introdução à Libras <span>(Clique para detalhes)</span></div>
-
-          <div class="course-item" data-id="intro-libras" onclick="openTopic('intro-libras')">
-            <div class="check" id="check-intro-libras"></div>
-            <div class="item-content">
-              <div class="item-title">Introdução à Libras</div>
-              <p class="item-text">Conheça a Libras, sua base legal, seu uso profissional e o alfabeto manual.</p>
-              <div class="mini-tags">
-                <span class="mini-tag">Lei 10.436/2002</span>
-                <span class="mini-tag">Datilologia</span>
-                <span class="mini-tag">Base inicial</span>
+            <div class="course-item" data-id="intro-libras" onclick="openTopic('intro-libras')">
+              <div class="check" id="check-intro-libras"></div>
+              <div class="icon-circle">🤟</div>
+              <div class="item-content">
+                <div class="item-title">Introdução à Libras</div>
+                <p class="item-text">Conheça a Libras, sua base legal, seu uso profissional e o alfabeto manual.</p>
+                <div class="mini-tags">
+                  <span class="mini-tag">Lei 10.436/2002</span>
+                  <span class="mini-tag">Datilologia</span>
+                  <span class="mini-tag">Base inicial</span>
+                </div>
               </div>
+              <div class="arrow">›</div>
             </div>
-            <div class="arrow">›</div>
-          </div>
 
-          <div class="course-item" data-id="inclusao-corporativa" onclick="openTopic('inclusao-corporativa')">
-            <div class="check" id="check-inclusao-corporativa"></div>
-            <div class="item-content">
-              <div class="item-title">Inclusão no Ambiente Corporativo</div>
-              <p class="item-text">Entenda como estruturar a organização para receber e integrar profissionais surdos com equidade.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item" data-id="acessibilidade-comunicacional" onclick="openTopic('acessibilidade-comunicacional')">
-            <div class="check" id="check-acessibilidade-comunicacional"></div>
-            <div class="item-content">
-              <div class="item-title">Conceito de Acessibilidade Comunicacional</div>
-              <p class="item-text">Elimine barreiras e garanta que todas as mensagens sejam compreendidas por todos.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item" data-id="cultura-inclusiva" onclick="openTopic('cultura-inclusiva')">
-            <div class="check" id="check-cultura-inclusiva"></div>
-            <div class="item-content">
-              <div class="item-title">Cultura Organizacional Inclusiva</div>
-              <p class="item-text">Transforme a inclusão em valor, prática e rotina dentro da empresa.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="module-card">
-          <div class="module-header">MÓDULO 2 – Comunicação e Tecnologias Acessíveis <span>(Clique para detalhes)</span></div>
-
-          <div class="course-item" data-id="comunicacao-inclusiva" onclick="openTopic('comunicacao-inclusiva')">
-            <div class="check" id="check-comunicacao-inclusiva"></div>
-            <div class="item-content">
-              <div class="item-title">Conceito de Comunicação Inclusiva</div>
-              <p class="item-text">Adapte forma e conteúdo para tornar a informação acessível e compreensível.</p>
-            </div>
-            <div class="arrow">›</div>
-          </div>
-
-          <div class="course-item" data-id="estrategias-comunicacao" onclick="openTopic('estrategias-comunicacao')">
-            <div class="check" id="check-estrategias-comunicacao"></div>
-            <div class="item-content">
-              <div class="item-title">Estratégias de Comunicação no Dia a Dia</div>
-              <p class="item-text">Use contato visual, iluminação adequada, clareza na fala e apoio visual.</p>
-              <div class="mini-tags">
-                <span class="mini-tag">Contato visual</span>
-                <span class="mini-tag">Clareza</span>
-                <span class="mini-tag">Apoio visual</span>
+            <div class="course-item" data-id="inclusao-corporativa" onclick="openTopic('inclusao-corporativa')">
+              <div class="check" id="check-inclusao-corporativa"></div>
+              <div class="icon-circle">👥</div>
+              <div class="item-content">
+                <div class="item-title">Inclusão no Ambiente Corporativo</div>
+                <p class="item-text">Entenda como estruturar a organização para receber e integrar profissionais surdos com equidade.</p>
               </div>
+              <div class="arrow">›</div>
             </div>
-            <div class="arrow">›</div>
+
+            <div class="course-item" data-id="acessibilidade-comunicacional" onclick="openTopic('acessibilidade-comunicacional')">
+              <div class="check" id="check-acessibilidade-comunicacional"></div>
+              <div class="icon-circle">💬</div>
+              <div class="item-content">
+                <div class="item-title">Conceito de Acessibilidade Comunicacional</div>
+                <p class="item-text">Elimine barreiras e garanta que todas as mensagens sejam compreendidas por todos.</p>
+              </div>
+              <div class="arrow">›</div>
+            </div>
+
+            <div class="course-item" data-id="cultura-inclusiva" onclick="openTopic('cultura-inclusiva')">
+              <div class="check" id="check-cultura-inclusiva"></div>
+              <div class="icon-circle">🏢</div>
+              <div class="item-content">
+                <div class="item-title">Cultura Organizacional Inclusiva</div>
+                <p class="item-text">Transforme a inclusão em valor, prática e rotina dentro da empresa.</p>
+              </div>
+              <div class="arrow">›</div>
+            </div>
           </div>
 
-          <div class="course-item" data-id="tecnologias-assistivas" onclick="openTopic('tecnologias-assistivas')">
-            <div class="check" id="check-tecnologias-assistivas"></div>
-            <div class="item-content">
-              <div class="item-title">Tecnologias Assistivas</div>
-              <p class="item-text">Conheça ferramentas que ajudam a reduzir barreiras no ambiente corporativo.</p>
+          <div class="module-card">
+            <div class="module-header">
+              MÓDULO 2 – Comunicação e Tecnologias Acessíveis <span>(Clique para detalhes)</span>
             </div>
-            <div class="arrow">›</div>
-          </div>
 
-          <div class="course-item" data-id="handtalk" onclick="openTopic('handtalk')">
-            <div class="check" id="check-handtalk"></div>
-            <div class="item-content">
-              <div class="item-title">Uso do Aplicativo Hand Talk</div>
-              <p class="item-text">Veja como o app pode apoiar a tradução de textos e áudios para Libras.</p>
+            <div class="course-item" data-id="comunicacao-inclusiva" onclick="openTopic('comunicacao-inclusiva')">
+              <div class="check" id="check-comunicacao-inclusiva"></div>
+              <div class="icon-circle">🗨️</div>
+              <div class="item-content">
+                <div class="item-title">Conceito de Comunicação Inclusiva</div>
+                <p class="item-text">Adapte forma e conteúdo para tornar a informação acessível e compreensível.</p>
+              </div>
+              <div class="arrow">›</div>
             </div>
-            <div class="arrow">›</div>
+
+            <div class="course-item" data-id="estrategias-comunicacao" onclick="openTopic('estrategias-comunicacao')">
+              <div class="check" id="check-estrategias-comunicacao"></div>
+              <div class="icon-circle">👁️</div>
+              <div class="item-content">
+                <div class="item-title">Estratégias de Comunicação no Dia a Dia</div>
+                <p class="item-text">Use contato visual, iluminação adequada, clareza na fala e apoio visual.</p>
+              </div>
+              <div class="arrow">›</div>
+            </div>
+
+            <div class="course-item" data-id="tecnologias-assistivas" onclick="openTopic('tecnologias-assistivas')">
+              <div class="check" id="check-tecnologias-assistivas"></div>
+              <div class="icon-circle">💻</div>
+              <div class="item-content">
+                <div class="item-title">Tecnologias Assistivas</div>
+                <p class="item-text">Conheça ferramentas que ajudam a reduzir barreiras no ambiente corporativo.</p>
+              </div>
+              <div class="arrow">›</div>
+            </div>
+
+            <div class="course-item" data-id="handtalk" onclick="openTopic('handtalk')">
+              <div class="check" id="check-handtalk"></div>
+              <div class="icon-circle">✋</div>
+              <div class="item-content">
+                <div class="item-title">Uso do Aplicativo Hand Talk</div>
+                <p class="item-text">Veja como o app pode apoiar a tradução de textos e áudios para Libras.</p>
+              </div>
+              <div class="arrow">›</div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="module-3-card">
-      <div class="module-header">MÓDULO 3 – Avaliação do Treinamento <span>(Clique para detalhes)</span></div>
-      <div class="course-item" data-id="avaliacao" onclick="openTopic('avaliacao')">
-        <div class="check" id="check-avaliacao"></div>
-        <div class="item-content">
-          <div class="item-title">Avaliação do Treinamento</div>
-          <p class="item-text">Questionário final para verificar o nível de compreensão dos participantes.</p>
+        <div class="module-3-wrapper">
+          <div class="module-card">
+            <div class="module-header">
+              MÓDULO 3 – Avaliação do Treinamento <span>(Clique para detalhes)</span>
+            </div>
+
+            <div class="course-item" data-id="avaliacao" onclick="openTopic('avaliacao')">
+              <div class="check" id="check-avaliacao"></div>
+              <div class="icon-circle">📋</div>
+              <div class="item-content">
+                <div class="item-title">Avaliação do Treinamento</div>
+                <p class="item-text">Questionário final para verificar o nível de compreensão dos participantes.</p>
+              </div>
+              <div class="arrow">›</div>
+            </div>
+          </div>
         </div>
-        <div class="arrow">›</div>
-      </div>
-    </div>
 
-    <p class="text-center mt-4 footer-note">Conecta Libras</p>
+        <div class="footer-note">Conecta Libras</div>
+      </div>
+    </section>
   </div>
 
-  <!-- MODAL DOS TÓPICOS -->
   <div class="modal fade" id="itemModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content rounded-4 border-0 shadow-lg">
@@ -664,7 +765,6 @@
     </div>
   </div>
 
-  <!-- MODAL DO TREINAMENTO -->
   <div class="modal fade" id="modalTreinamento" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content rounded-4 border-0 shadow-lg">
@@ -828,29 +928,14 @@
       "handtalk": {
         title: "Uso do Aplicativo Hand Talk",
         content: `
-          <p>O <strong>Hand Talk</strong> é um aplicativo de tecnologia assistiva que realiza a tradução de textos e áudios para Libras, por meio de avatares virtuais (Hugo e Maya), que representam a sinalização em língua de sinais.</p>
-          <p>A ferramenta funciona como apoio à comunicação básica e conteúdos para estudo, contribuindo para a compreensão de conteúdos escritos ou falados em situações do dia a dia.</p>
-
+          <p>O <strong>Hand Talk</strong> é um aplicativo de tecnologia assistiva que realiza a tradução de textos e áudios para Libras, por meio de avatares virtuais.</p>
           <img src="img/handtalk.jpg" alt="Aplicativo Hand Talk" class="modal-image">
-
           <p><strong>Aplicação prática no ambiente corporativo:</strong></p>
           <ul>
             <li>Apoio em comunicações rápidas e objetivas</li>
             <li>Auxílio na compreensão de instruções simples</li>
             <li>Suporte em atendimentos iniciais e interações pontuais</li>
             <li>Reforço de informações em formato acessível</li>
-          </ul>
-
-          <p><strong>Destaque:</strong> o Hand Talk é um recurso complementar de acessibilidade. Seu uso não substitui intérpretes de Libras em situações formais ou de maior complexidade comunicacional.</p>
-
-          <p><strong>Ação recomendada:</strong> instalar o aplicativo Hand Talk para familiarização com a ferramenta e utilização como recurso de apoio à comunicação inclusiva.</p>
-
-          <p><strong>Atividades práticas:</strong></p>
-          <ul>
-            <li>Digite seu nome no aplicativo e observe a tradução em Libras</li>
-            <li>Traduza expressões como “Bom dia” e “Tudo bem?”</li>
-            <li>Traduza palavras do contexto profissional como “Reunião” e “E-mail”</li>
-            <li>Use a função de áudio com a expressão “Obrigado”</li>
           </ul>
         `,
         links: [
