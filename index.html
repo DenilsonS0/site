@@ -30,7 +30,6 @@
       margin: 0;
     }
 
-    /* ===== TOPO NOVO ===== */
     .hero-top {
       background: linear-gradient(90deg, #f7f8fa 0%, #f7f8fa 55%, #eef4f4 100%);
       border-radius: 24px;
@@ -67,22 +66,29 @@
 
     .hero-top-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
+      grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
-      gap: 30px;
+      gap: 8px;
       position: relative;
       z-index: 2;
     }
 
     .hero-brand {
-      margin-bottom: 18px;
+      width: 265px;
+      height: 120px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 12px;
     }
 
     .hero-brand img {
-      max-width: 220px;
-      width: 100%;
+      width: 290px;
+      max-width: none;
       height: auto;
       display: block;
+      position: absolute;
+      left: -20px;
+      top: -12px;
     }
 
     .hero-label {
@@ -176,7 +182,7 @@
 
     .hero-visual {
       position: relative;
-      min-height: 420px;
+      min-height: 390px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -185,18 +191,18 @@
     .hero-visual::before {
       content: "";
       position: absolute;
-      width: 430px;
-      height: 430px;
+      width: 340px;
+      height: 340px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.75);
-      box-shadow: inset 0 0 0 22px #edf1f4;
+      background: rgba(255,255,255,0.65);
+      box-shadow: inset 0 0 0 16px #edf1f4;
     }
 
     .hero-visual::after {
       content: "";
       position: absolute;
-      width: 520px;
-      height: 520px;
+      width: 420px;
+      height: 420px;
       border-radius: 50%;
       border: 2px solid rgba(162, 205, 235, 0.45);
     }
@@ -204,13 +210,12 @@
     .hero-visual img {
       position: relative;
       z-index: 2;
-      max-width: 430px;
+      max-width: 320px;
       width: 100%;
       height: auto;
       object-fit: contain;
+      display: block;
     }
-
-    /* ===== RESTANTE ORIGINAL ===== */
 
     .section-title {
       font-size: 2rem;
@@ -391,17 +396,6 @@
       font-weight: 700;
     }
 
-    .status-badge {
-      display: inline-block;
-      background: #e8f5e9;
-      color: #1b7f38;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: .9rem;
-      margin-top: 10px;
-    }
-
     .reset-box {
       margin-top: 10px;
     }
@@ -415,6 +409,10 @@
       margin-top: 24px;
     }
 
+    #modalStatus {
+      display: none;
+    }
+
     @media (max-width: 991px) {
       .hero-top-grid {
         grid-template-columns: 1fr;
@@ -426,17 +424,17 @@
       }
 
       .hero-visual::before {
-        width: 320px;
-        height: 320px;
+        width: 280px;
+        height: 280px;
       }
 
       .hero-visual::after {
-        width: 380px;
-        height: 380px;
+        width: 340px;
+        height: 340px;
       }
 
       .hero-visual img {
-        max-width: 300px;
+        max-width: 250px;
       }
 
       .hero-actions {
@@ -447,18 +445,28 @@
       .item-title {
         font-size: 1.02rem;
       }
+
+      .hero-brand {
+        width: 220px;
+        height: 96px;
+      }
+
+      .hero-brand img {
+        width: 240px;
+        left: -10px;
+        top: -4px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container py-4 py-lg-5">
 
-    <!-- TOPO ALTERADO -->
     <section class="hero-top mb-4">
       <div class="hero-top-grid">
         <div>
           <div class="hero-brand">
-            <img src="img/logo-conecta.png" alt="Logo Conecta Libras">
+            <img src="IMG/logo-conecta.png" alt="Logo Conecta Libras">
           </div>
 
           <div class="hero-label">Treinamento:</div>
@@ -486,7 +494,7 @@
         </div>
 
         <div class="hero-visual">
-          <IMG src="IMG/topo-personagem.png" alt="Ilustração Conecta Libras">
+          <img src="IMG/topo-personagem.png" alt="Ilustração Conecta Libras">
         </div>
       </div>
     </section>
@@ -684,7 +692,7 @@
             <li>Interações mais respeitosas e eficazes</li>
             <li>Maior integração de profissionais surdos na equipe</li>
           </ul>
-          <img src="img/alfabeto.jpg" alt="Alfabeto manual em Libras" class="modal-image">
+          <img src="IMG/alfabeto.jpg" alt="Alfabeto manual em Libras" class="modal-image">
           <p>A imagem apresenta o alfabeto manual em Libras, utilizado para soletração de nomes próprios, siglas e palavras que ainda não possuem sinal específico. Seu uso é comum em interações iniciais e como apoio à comunicação.</p>
           <p><strong>Destaque:</strong> a Libras não é uma adaptação do português. É uma língua completa, com estrutura própria, utilizada para comunicação plena pela comunidade surda.</p>
         `,
@@ -798,7 +806,7 @@
           <p>O <strong>Hand Talk</strong> é um aplicativo de tecnologia assistiva que realiza a tradução de textos e áudios para Libras, por meio de avatares virtuais (Hugo e Maya), que representam a sinalização em língua de sinais.</p>
           <p>A ferramenta funciona como apoio à comunicação básica e conteúdos para estudo, contribuindo para a compreensão de conteúdos escritos ou falados em situações do dia a dia.</p>
 
-          <img src="img/handtalk.jpg" alt="Aplicativo Hand Talk" class="modal-image">
+          <img src="IMG/handtalk.jpg" alt="Aplicativo Hand Talk" class="modal-image">
 
           <p><strong>Aplicação prática no ambiente corporativo:</strong></p>
           <ul>
@@ -887,15 +895,6 @@
       const actions = document.getElementById("modalActions");
       actions.innerHTML = "";
 
-      const markBtn = document.createElement("button");
-      markBtn.className = "btn btn-success btn-custom";
-      markBtn.textContent = "Marcar como visto";
-      markBtn.onclick = () => {
-        markAsDone(id);
-        renderStatus(id);
-      };
-      actions.appendChild(markBtn);
-
       if (topic.links) {
         topic.links.forEach(link => {
           const a = document.createElement("a");
@@ -905,27 +904,15 @@
           a.textContent = link.label;
           a.onclick = () => {
             markAsDone(id);
-            setTimeout(() => renderStatus(id), 200);
           };
           actions.appendChild(a);
         });
       }
 
       markAsDone(id);
-      renderStatus(id);
 
       const modal = new bootstrap.Modal(document.getElementById("itemModal"));
       modal.show();
-    }
-
-    function renderStatus(id) {
-      const done = getDoneTopics();
-      const status = document.getElementById("modalStatus");
-      if (done.includes(id)) {
-        status.innerHTML = `<div class="status-badge">Conteúdo visualizado</div>`;
-      } else {
-        status.innerHTML = "";
-      }
     }
 
     function resetProgress() {
