@@ -38,7 +38,6 @@
       overflow-x: hidden;
     }
 
-    /* ===== HERO ===== */
     .hero-section {
       background: linear-gradient(90deg, #edf4f8 0%, #eef5f7 55%, #eef5ef 100%);
       border-bottom: 1px solid #dfe5eb;
@@ -234,7 +233,6 @@
       margin-right: 8px;
     }
 
-    /* ===== CONTEÚDO ===== */
     .main-content {
       padding: 26px 0 40px;
     }
@@ -432,7 +430,6 @@
       font-weight: 800;
     }
 
-    /* ===== MODAL ===== */
     .modal-header {
       background: var(--azul);
       color: #fff;
@@ -440,6 +437,10 @@
 
     .modal-header .btn-close {
       filter: invert(1);
+    }
+
+    .modal-body ul {
+      padding-left: 1.2rem;
     }
 
     .modal-image {
@@ -472,7 +473,6 @@
       margin-top: 12px;
     }
 
-    /* ===== RESPONSIVO ===== */
     @media (max-width: 1199px) {
       .hero-bottom-grid {
         grid-template-columns: 1fr;
@@ -716,7 +716,7 @@
               <div class="check" id="check-estrategias-comunicacao"></div>
               <div class="icon-circle">👁️</div>
               <div class="item-content">
-                <div class="item-title">Estratégias de Comunicação no Dia a Dia</div>
+                <div class="item-title">Estratégias de Comunicação</div>
                 <p class="item-text">Use contato visual, iluminação adequada, clareza na fala e apoio visual.</p>
               </div>
               <div class="arrow">›</div>
@@ -726,7 +726,7 @@
               <div class="check" id="check-tecnologias-assistivas"></div>
               <div class="icon-circle">💻</div>
               <div class="item-content">
-                <div class="item-title">Tecnologias Assistivas</div>
+                <div class="item-title">Tecnologias Assistivas na Comunicação</div>
                 <p class="item-text">Conheça ferramentas que ajudam a reduzir barreiras no ambiente corporativo.</p>
               </div>
               <div class="arrow">›</div>
@@ -736,7 +736,7 @@
               <div class="check" id="check-handtalk"></div>
               <div class="icon-circle">✋</div>
               <div class="item-content">
-                <div class="item-title">Uso do Aplicativo Hand Talk</div>
+                <div class="item-title">Explicação do Aplicativo e Aplicação Prática: Hand Talk</div>
                 <p class="item-text">Veja como o app pode apoiar a tradução de textos e áudios para Libras.</p>
               </div>
               <div class="arrow">›</div>
@@ -807,9 +807,9 @@
             <li>Acessibilidade comunicacional</li>
             <li>Cultura organizacional inclusiva</li>
             <li>Comunicação inclusiva</li>
-            <li>Estratégias de comunicação no dia a dia</li>
-            <li>Tecnologias assistivas</li>
-            <li>Uso do aplicativo Hand Talk</li>
+            <li>Estratégias de comunicação</li>
+            <li>Tecnologias assistivas na comunicação</li>
+            <li>Explicação do aplicativo e aplicação prática: Hand Talk</li>
             <li>Avaliação do treinamento</li>
           </ul>
 
@@ -827,16 +827,22 @@
         title: "Introdução à Libras",
         content: `
           <p><strong>A Libras (Língua Brasileira de Sinais)</strong> é a língua utilizada pela comunidade surda no Brasil. Trata-se de uma língua de modalidade visual-espacial, com estrutura gramatical própria, independente da língua portuguesa.</p>
+
           <p>Não deve ser confundida com mímica ou gestos improvisados, pois possui regras linguísticas definidas, incluindo formação de sinais, expressões faciais e organização sintática.</p>
+
           <p><strong>Base legal:</strong> a Libras foi reconhecida como meio legal de comunicação e expressão pela Lei nº 10.436/2002, sendo regulamentada pelo Decreto nº 5.626/2005.</p>
+
           <p><strong>Aplicação no contexto profissional:</strong></p>
           <ul>
             <li>Redução de barreiras na comunicação</li>
             <li>Interações mais respeitosas e eficazes</li>
             <li>Maior integração de profissionais surdos na equipe</li>
           </ul>
+
           <img src="img/alfabeto.jpg" alt="Alfabeto manual em Libras" class="modal-image">
+
           <p>A imagem apresenta o alfabeto manual em Libras, utilizado para soletração de nomes próprios, siglas e palavras que ainda não possuem sinal específico. Seu uso é comum em interações iniciais e como apoio à comunicação.</p>
+
           <p><strong>Destaque:</strong> a Libras não é uma adaptação do português. É uma língua completa, com estrutura própria, utilizada para comunicação plena pela comunidade surda.</p>
         `,
         links: [
@@ -848,15 +854,18 @@
         title: "Inclusão no Ambiente Corporativo",
         content: `
           <p>Inclusão no ambiente corporativo é o processo de estruturar a organização para receber, integrar e desenvolver profissionais surdos com equidade. Envolve garantir autonomia, acesso à informação e condições adequadas para o desempenho das atividades.</p>
+
           <p>Não se trata apenas de contratar, mas de assegurar participação plena em todas as etapas da jornada do colaborador.</p>
+
           <p><strong>Exemplos práticos:</strong></p>
           <ul>
             <li>Realização de entrevistas com apoio de intérprete de Libras, quando necessário</li>
             <li>Divulgação de vagas com recursos acessíveis, como vídeos em Libras</li>
-            <li>Utilização de ferramentas digitais que favoreçam a comunicação</li>
+            <li>Utilização de ferramentas digitais que favoreçam a comunicação (legendas automáticas, chats, aplicativos)</li>
             <li>Adaptação de treinamentos e integrações com recursos visuais</li>
             <li>Compartilhamento de informações internas de forma acessível</li>
           </ul>
+
           <p><strong>Destaque:</strong> a inclusão efetiva depende de ajustes nos processos e na comunicação, não apenas da contratação de profissionais surdos.</p>
         `
       },
@@ -865,16 +874,20 @@
         title: "Conceito de Acessibilidade Comunicacional",
         content: `
           <p>A acessibilidade comunicacional refere-se à eliminação de barreiras que dificultam ou impedem a compreensão das informações por diferentes públicos, especialmente pessoas surdas.</p>
+
           <p>No ambiente corporativo, isso significa garantir que todas as mensagens — formais e informais — sejam transmitidas de maneira clara, acessível e compreensível, independentemente do canal utilizado.</p>
+
           <p>Envolve não apenas o conteúdo, mas também a forma como a informação é apresentada.</p>
+
           <p><strong>Exemplos de aplicação:</strong></p>
           <ul>
             <li>Uso de legendas em vídeos institucionais e treinamentos</li>
             <li>Inserção de recursos visuais em apresentações e comunicados</li>
             <li>Disponibilização de intérprete de Libras em reuniões e eventos, quando necessário</li>
-            <li>Utilização de tecnologias assistivas, aplicativos e transcrição automática</li>
+            <li>Utilização de tecnologias assistivas (aplicativos, transcrição automática, plataformas com acessibilidade)</li>
             <li>Adoção de sinalizações visuais para avisos e alertas</li>
           </ul>
+
           <p><strong>Destaque:</strong> a comunicação só é efetiva quando pode ser compreendida por todos os colaboradores.</p>
         `
       },
@@ -883,7 +896,9 @@
         title: "Cultura Organizacional Inclusiva",
         content: `
           <p>Cultura organizacional inclusiva é aquela em que a diversidade e a inclusão estão incorporadas aos valores, práticas e decisões da empresa. Não se limita ao cumprimento de exigências legais, mas se reflete no comportamento das lideranças e na rotina das equipes.</p>
+
           <p>Nesse contexto, a inclusão de pessoas surdas é tratada de forma estruturada, garantindo participação, desenvolvimento e reconhecimento profissional.</p>
+
           <p><strong>Exemplos de ações:</strong></p>
           <ul>
             <li>Realização de palestras e ações de sensibilização sobre inclusão</li>
@@ -892,6 +907,7 @@
             <li>Capacitação de lideranças para gestão de equipes inclusivas</li>
             <li>Inclusão do tema acessibilidade em treinamentos corporativos</li>
           </ul>
+
           <p><strong>Impactos organizacionais:</strong></p>
           <ul>
             <li>Melhoria do clima e do engajamento das equipes</li>
@@ -899,23 +915,28 @@
             <li>Fortalecimento da marca empregadora</li>
             <li>Estímulo à inovação por meio da diversidade de perspectivas</li>
           </ul>
+
           <p><strong>Destaque:</strong> a inclusão se consolida quando faz parte da cultura e das práticas diárias da organização, e não apenas de iniciativas pontuais.</p>
         `
       },
 
       "comunicacao-inclusiva": {
-        title: "Comunicação Inclusiva",
+        title: "Conceito de Comunicação Inclusiva",
         content: `
           <p>Comunicação inclusiva consiste na adaptação intencional da forma e do conteúdo das mensagens para garantir que todos os colaboradores compreendam a informação, independentemente de suas condições de comunicação.</p>
+
           <p>No contexto de pessoas surdas, isso envolve priorizar clareza, objetividade e recursos visuais como apoio à transmissão da mensagem.</p>
+
           <p><strong>Exemplo prático:</strong> em reuniões, é recomendável assegurar que os conteúdos apresentados sejam visualmente estruturados, com uso de slides, tópicos objetivos e elementos gráficos que facilitem a compreensão e o acompanhamento por parte do colaborador surdo.</p>
+
           <p><strong>Destaque:</strong> comunicar de forma inclusiva não é simplificar o conteúdo, mas torná-lo acessível e compreensível para todos.</p>
         `
       },
 
       "estrategias-comunicacao": {
-        title: "Estratégias de Comunicação no Dia a Dia",
+        title: "Estratégias de Comunicação",
         content: `
+          <p><strong>O que fazer?</strong></p>
           <p><strong>Checklist prático:</strong></p>
           <ul>
             <li><strong>Contato visual:</strong> mantenha o olhar direcionado à pessoa durante a comunicação. Evite falar de costas ou com o rosto parcialmente encoberto.</li>
@@ -923,31 +944,39 @@
             <li><strong>Clareza na fala:</strong> utilize velocidade natural, com boa articulação das palavras, sem exageros ou gritos.</li>
             <li><strong>Apoio visual:</strong> utilize recursos complementares como anotações, aplicativos de texto, apresentações ou outros meios que auxiliem a compreensão.</li>
           </ul>
+
           <p><strong>Destaque:</strong> a comunicação eficaz depende da combinação entre clareza, visibilidade e validação do entendimento.</p>
         `
       },
 
       "tecnologias-assistivas": {
-        title: "Tecnologias Assistivas",
+        title: "Tecnologias Assistivas na Comunicação",
         content: `
           <p>Tecnologias assistivas são recursos digitais ou físicos que atuam como apoio à comunicação entre pessoas surdas e ouvintes, reduzindo barreiras e ampliando o acesso à informação no ambiente corporativo.</p>
+
           <p>Essas ferramentas não substituem práticas inclusivas, mas funcionam como suporte para tornar a comunicação mais acessível e eficiente.</p>
+
           <p><strong>Sugestões para aplicação no trabalho:</strong></p>
           <ul>
-            <li>Google Meet / Microsoft Teams: utilização de legendas automáticas durante reuniões e treinamentos virtuais</li>
-            <li>Hand Talk: aplicativo de apoio à tradução de texto e voz para Libras</li>
-            <li>Sistemas de alerta visual: sinalização por luzes ou painéis luminosos em situações de emergência</li>
-            <li>Ferramentas de transcrição automática: conversão de áudio em texto para registro de reuniões e comunicações internas</li>
+            <li>Google Meet / Microsoft Teams: utilização de legendas automáticas durante reuniões e treinamentos virtuais.</li>
+            <li>Hand Talk: aplicativo de apoio à tradução de texto e voz para Libras, útil em interações rápidas e conteúdos simples.</li>
+            <li>Sistemas de alerta visual: sinalização por luzes ou painéis luminosos em situações de emergência, como alarmes de incêndio.</li>
+            <li>Ferramentas de transcrição automática: conversão de áudio em texto para registro de reuniões e comunicações internas.</li>
           </ul>
+
           <p><strong>Destaque:</strong> a tecnologia amplia a acessibilidade, mas sua efetividade depende da combinação com práticas de comunicação inclusiva no dia a dia.</p>
         `
       },
 
       "handtalk": {
-        title: "Uso do Aplicativo Hand Talk",
+        title: "Explicação do Aplicativo e Aplicação Prática: Hand Talk",
         content: `
-          <p>O <strong>Hand Talk</strong> é um aplicativo de tecnologia assistiva que realiza a tradução de textos e áudios para Libras, por meio de avatares virtuais.</p>
-          <img src="img/handtalk.jpg" alt="Aplicativo Hand Talk" class="modal-image">
+          <p><strong>O que é e o que oferece</strong></p>
+
+          <p>O <strong>Hand Talk</strong> é um aplicativo de tecnologia assistiva que realiza a tradução de textos e áudios para Libras, por meio de avatares virtuais <strong>(Hugo e Maya)</strong>, que representam a sinalização em língua de sinais.</p>
+
+          <p>A ferramenta funciona como apoio à comunicação básica e conteúdos para estudo, contribuindo para a compreensão de conteúdos escritos ou falados em situações do dia a dia.</p>
+
           <p><strong>Aplicação prática no ambiente corporativo:</strong></p>
           <ul>
             <li>Apoio em comunicações rápidas e objetivas</li>
@@ -955,9 +984,46 @@
             <li>Suporte em atendimentos iniciais e interações pontuais</li>
             <li>Reforço de informações em formato acessível</li>
           </ul>
+
+          <p><strong>Destaque:</strong> o Hand Talk é um recurso complementar de acessibilidade. Seu uso não substitui intérpretes de Libras em situações formais ou de maior complexidade comunicacional.</p>
+
+          <p><strong>Demonstrativo dos serviços disponíveis no app:</strong> as imagens a seguir apresentam a interface e os principais recursos do aplicativo Hand Talk, incluindo a atuação dos avatares virtuais na tradução de textos e áudios para Libras.</p>
+
+          <img src="img/handtalk.jpg" alt="Aplicativo Hand Talk" class="modal-image">
+
+          <p><strong>Ação recomendada:</strong> instalar o aplicativo Hand Talk para familiarização com a ferramenta e utilização como recurso de apoio à comunicação inclusiva.</p>
+
+          <p><strong>Atividades práticas</strong></p>
+          <p>Com o objetivo de promover o contato inicial com a Libras e a utilização de tecnologias assistivas no ambiente corporativo, realize as atividades a seguir utilizando o aplicativo Hand Talk:</p>
+
+          <p><strong>Atividade prática 1: Nome em Libras</strong></p>
+          <ol>
+            <li>Acesse o aplicativo Hand Talk</li>
+            <li>Digite seu nome</li>
+          </ol>
+          <p>Observe a tradução em Libras.</p>
+
+          <p><strong>Atividade prática 2: Cumprimentos básicos</strong></p>
+          <ol>
+            <li>Traduza as seguintes expressões: “Bom dia” e “Tudo bem?”</li>
+            <li>Observe os sinais apresentados</li>
+          </ol>
+
+          <p><strong>Atividade prática 3: Palavras do contexto profissional</strong></p>
+          <ol>
+            <li>Traduza as seguintes palavras: “Reunião” e “E-mail”</li>
+            <li>Observe como o aplicativo realiza a interpretação</li>
+          </ol>
+
+          <p><strong>Atividade prática 4: Uso de áudio para tradução</strong></p>
+          <ol>
+            <li>Utilize a função de áudio do aplicativo</li>
+            <li>Fale a expressão: “Obrigado”</li>
+          </ol>
+          <p>Observe a tradução em Libras.</p>
         `,
         links: [
-          { label: "Abrir aplicativo Hand Talk", url: "https://play.google.com/store/apps/details?id=br.com.handtalk" }
+          { label: "Baixar o aplicativo Hand Talk", url: "https://play.google.com/store/apps/details?id=br.com.handtalk" }
         ]
       },
 
@@ -965,7 +1031,7 @@
         title: "Avaliação do Treinamento",
         content: `
           <p><strong>Questionário de Avaliação (Múltipla Escolha)</strong></p>
-          <p>Objetivo: verificar o nível de compreensão dos participantes sobre os conteúdos abordados no treinamento, incluindo inclusão, Libras básica e uso de tecnologias acessíveis.</p>
+          <p><strong>Objetivo:</strong> verificar o nível de compreensão dos participantes sobre os conteúdos abordados no treinamento, incluindo inclusão, Libras básica e uso de tecnologias acessíveis.</p>
           <p>Você pode substituir o link abaixo pelo formulário final real do grupo.</p>
         `,
         links: [
