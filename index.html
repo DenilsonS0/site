@@ -1,235 +1,992 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conecta Libras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #123d7a;
+      --secondary: #1f9d63;
+      --accent: #f4bf2a;
+      --bg: #eef1f5;
+      --card: #ffffff;
+      --soft: #f4f7fb;
+      --text: #1d1d1f;
+      --muted: #4e5a6a;
+      --border: #dce3ea;
+      --progress: #2d8fd5;
+      --shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
 
-<title>Conecta Libras</title>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fa;
-}
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-/* CONTAINER */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px 20px;
-}
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 20px 50px;
+    }
 
-/* TOPO */
-.hero {
-  background: #fff;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
+    /* TOPO */
+    .hero-top {
+      background: linear-gradient(135deg, #f8fafc 0%, #f4f7fb 55%, #eef6f3 100%);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 34px 38px;
+      overflow: hidden;
+      border: 1px solid #e5ebf2;
+      position: relative;
+    }
 
-/* GRID */
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  align-items: center;
-}
+    .hero-top::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 72px;
+      height: 72px;
+      background-image: radial-gradient(#d2e3f6 1.4px, transparent 1.4px);
+      background-size: 10px 10px;
+      opacity: 0.8;
+    }
 
-/* LOGO */
-.logo img {
-  width: 180px;
-}
+    .hero-top::after {
+      content: "";
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 72px;
+      height: 72px;
+      background-image: radial-gradient(#d2e3f6 1.4px, transparent 1.4px);
+      background-size: 10px 10px;
+      opacity: 0.8;
+    }
 
-/* TEXTO */
-.hero-label {
-  color: #1f4b87;
-  font-weight: bold;
-  margin-top: 20px;
-}
+    .hero-top-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      z-index: 2;
+    }
 
-.hero-title {
-  font-size: 48px;
-  font-weight: bold;
-  color: #1f4b87;
-  line-height: 1.2;
-}
+    .hero-left {
+      max-width: 700px;
+    }
 
-.hero-title span {
-  color: #2ca55c;
-}
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.hero-text {
-  margin-top: 15px;
-  color: #555;
-  font-size: 18px;
-}
+    .hero-brand {
+      width: 260px;
+      height: 115px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 8px;
+    }
 
-/* BOTÃO */
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  background: #f5b400;
-  color: #000;
-  padding: 15px 25px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
+    .hero-brand img {
+      width: 280px;
+      max-width: none;
+      height: auto;
+      display: block;
+      position: absolute;
+      left: -18px;
+      top: -10px;
+    }
 
-/* IMAGEM LADO DIREITO */
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
+    .hero-label {
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #173e82;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+    }
 
-/* círculo branco */
-.hero-visual::before {
-  content: "";
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  background: #f2f4f6;
-  border-radius: 50%;
-  z-index: 1;
-}
+    .hero-label::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 3px;
+      background: #20a35d;
+      border-radius: 999px;
+      margin-top: 8px;
+    }
 
-/* círculo azul */
-.hero-visual::after {
-  content: "";
-  position: absolute;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  border: 2px solid rgba(173,215,235,0.5);
-  z-index: 0;
-}
+    .hero-title {
+      font-size: clamp(2.3rem, 4vw, 4.2rem);
+      line-height: 1.04;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 0 0 16px;
+      max-width: 720px;
+    }
 
-/* imagem */
-.hero-visual img {
-  width: 320px;
-  position: relative;
-  z-index: 2;
-}
+    .hero-title .highlight {
+      color: #20a35d;
+    }
 
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-}
+    .hero-description {
+      font-size: 1.04rem;
+      color: #31425d;
+      line-height: 1.6;
+      max-width: 620px;
+      margin-bottom: 22px;
+    }
 
-.modal-content {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  max-width: 600px;
-  width: 90%;
-}
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-.close {
-  float: right;
-  cursor: pointer;
-  font-size: 20px;
-}
+    .hero-btn {
+      background: var(--accent);
+      color: #111;
+      border: none;
+      border-radius: 14px;
+      padding: 15px 26px;
+      font-size: 1rem;
+      font-weight: 800;
+      box-shadow: 0 10px 20px rgba(244, 191, 42, 0.22);
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
 
-</style>
+    .hero-btn:hover {
+      background: #e7b11d;
+      transform: translateY(-2px);
+    }
+
+    .hero-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #24395e;
+      font-size: 0.98rem;
+      max-width: 260px;
+      line-height: 1.35;
+    }
+
+    .hero-info-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border: 2px solid #27a95f;
+      color: #27a95f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      background: #fff;
+      font-weight: 800;
+    }
+
+    .hero-visual-clean {
+      width: 100%;
+      max-width: 520px;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-visual-clean::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: #f2f4f6;
+      z-index: 1;
+    }
+
+    .hero-visual-clean::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      border: 2px solid rgba(173,215,235,0.45);
+      z-index: 0;
+    }
+
+    .hero-visual-clean img {
+      position: relative;
+      z-index: 2;
+      max-width: 340px;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.08));
+    }
+
+    /* BARRA */
+    .top-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 26px 0 20px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #111;
+      margin: 0;
+    }
+
+    .section-title small {
+      font-weight: 600;
+      color: #555;
+    }
+
+    .bar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .progress-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .progress {
+      height: 18px;
+      width: 260px;
+      border-radius: 30px;
+      background: #dfe6ee;
+      overflow: hidden;
+      border: 1px solid #c6d1dc;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--progress);
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width .3s ease;
+      font-size: .85rem;
+    }
+
+    .reset-btn {
+      border: 1px solid #cbd5e1;
+      background: white;
+      border-radius: 10px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* MÓDULOS */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .module-card,
+    .module-3-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+    }
+
+    .module-3-card {
+      margin-top: 24px;
+    }
+
+    .module-header {
+      background: #dfe3e8;
+      color: #111;
+      padding: 16px 18px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .module-header span {
+      font-weight: 600;
+      color: #444;
+      font-size: 1rem;
+    }
+
+    .course-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px;
+      background: var(--light-bg);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .course-item:hover {
+      background: #e2e7ef;
+      transform: translateX(2px);
+    }
+
+    .course-item:last-child {
+      border-bottom: none;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border: 2px solid #8592a3;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-top: 4px;
+      background: #fff;
+      color: #111;
+      font-weight: 700;
+    }
+
+    .course-item.done .check {
+      border-color: #28a745;
+      color: #28a745;
+    }
+
+    .item-content {
+      flex: 1;
+    }
+
+    .item-title {
+      font-weight: 800;
+      font-size: 1.08rem;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .item-text {
+      color: #333;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .mini-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .mini-tag {
+      background: #fff;
+      border: 1px solid #ccd3dc;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #415161;
+    }
+
+    .arrow {
+      font-size: 1.9rem;
+      color: #8a93a0;
+      font-weight: 300;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .footer-note {
+      color: #51606f;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(820px, 100%);
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.20);
+    }
+
+    .modal-header {
+      background: var(--primary);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 22px;
+      max-height: 75vh;
+      overflow: auto;
+    }
+
+    .modal-body ul {
+      padding-left: 1.2rem;
+    }
+
+    .modal-image {
+      width: 100%;
+      border-radius: 12px;
+      margin: 16px 0;
+      border: 1px solid #d9dee5;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 991px) {
+      .hero-top-grid,
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-brand {
+        width: 220px;
+        height: 96px;
+      }
+
+      .hero-brand img {
+        width: 240px;
+        left: -12px;
+        top: -6px;
+      }
+
+      .hero-visual-clean {
+        min-height: 320px;
+      }
+
+      .hero-visual-clean::before {
+        width: 290px;
+        height: 290px;
+      }
+
+      .hero-visual-clean::after {
+        width: 350px;
+        height: 350px;
+      }
+
+      .hero-visual-clean img {
+        max-width: 250px;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 10vw, 3.2rem);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <section class="hero-top">
+      <div class="hero-top-grid">
+        <div class="hero-left">
+          <div class="hero-brand">
+            <img src="img/logo.png" alt="Logo Conecta Libras">
+          </div>
 
-<div class="container">
-  <div class="hero">
+          <div class="hero-label">TREINAMENTO:</div>
 
-    <div class="hero-grid">
+          <h1 class="hero-title">
+            Incluindo Pessoas Surdas <br>
+            no <span class="highlight">Ambiente Corporativo</span>
+          </h1>
 
-      <!-- ESQUERDA -->
-      <div>
+          <p class="hero-description">
+            Capacite sua equipe para criar um ambiente mais inclusivo e acessível.
+            Aprenda Libras básica, comunicação inclusiva e o uso de tecnologias assistivas.
+          </p>
 
-        <div class="logo">
-          <img src="img/logo.png">
+          <div class="hero-actions">
+            <button class="hero-btn" onclick="openTrainingModal()">
+              CONTEÚDO DO TREINAMENTO →
+            </button>
+
+            <div class="hero-info">
+              <div class="hero-info-icon">✓</div>
+              <div>Libras básica e tecnologias acessíveis para comunicação</div>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-label">TREINAMENTO:</div>
-
-        <div class="hero-title">
-          Incluindo Pessoas Surdas <br>
-          no <span>Ambiente Corporativo</span>
+        <div class="hero-right">
+          <div class="hero-visual-clean">
+            <img src="img/avatar.png" alt="Ilustração Conecta Libras">
+          </div>
         </div>
-
-        <div class="hero-text">
-          Capacite sua equipe para criar um ambiente mais inclusivo e acessível. 
-          Aprenda Libras básica, comunicação inclusiva e o uso de tecnologias assistivas.
-        </div>
-
-        <a href="#" class="btn" onclick="abrirModal()">
-          CONTEÚDO DO TREINAMENTO →
-        </a>
-
       </div>
+    </section>
 
-      <!-- DIREITA -->
-      <div class="hero-visual">
-        <img src="img/avatar.png">
+    <div class="top-bar">
+      <div class="bar-row">
+        <div>
+          <h3 class="section-title">CONTEÚDO DO CURSO <small>(Clique para detalhes)</small></h3>
+          <button class="reset-btn" onclick="resetProgress()">Resetar progresso</button>
+        </div>
+
+        <div class="progress-wrapper">
+          <div class="progress">
+            <div class="progress-bar" id="progressBar">0%</div>
+          </div>
+          <div id="progressText"><strong>0% Concluído</strong></div>
+        </div>
       </div>
-
     </div>
 
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-header">MÓDULO 1 – Conscientização e Introdução à Libras <span>(Clique para detalhes)</span></div>
+
+        <div class="course-item" data-id="intro-libras" onclick="openTopic('intro-libras')">
+          <div class="check" id="check-intro-libras"></div>
+          <div class="item-content">
+            <div class="item-title">Introdução à Libras</div>
+            <p class="item-text">Conheça a Libras, sua base legal, seu uso profissional e o alfabeto manual.</p>
+            <div class="mini-tags">
+              <span class="mini-tag">Lei 10.436/2002</span>
+              <span class="mini-tag">Datilologia</span>
+              <span class="mini-tag">Base inicial</span>
+            </div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="course-item" data-id="inclusao-corporativa" onclick="openTopic('inclusao-corporativa')">
+          <div class="check" id="check-inclusao-corporativa"></div>
+          <div class="item-content">
+            <div class="item-title">Inclusão no Ambiente Corporativo</div>
+            <p class="item-text">Entenda como estruturar a organização para receber e integrar profissionais surdos com equidade.</p>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="course-item" data-id="acessibilidade-comunicacional" onclick="openTopic('acessibilidade-comunicacional')">
+          <div class="check" id="check-acessibilidade-comunicacional"></div>
+          <div class="item-content">
+            <div class="item-title">Conceito de Acessibilidade Comunicacional</div>
+            <p class="item-text">Elimine barreiras e garanta que todas as mensagens sejam compreendidas por todos.</p>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="course-item" data-id="cultura-inclusiva" onclick="openTopic('cultura-inclusiva')">
+          <div class="check" id="check-cultura-inclusiva"></div>
+          <div class="item-content">
+            <div class="item-title">Cultura Organizacional Inclusiva</div>
+            <p class="item-text">Transforme a inclusão em valor, prática e rotina dentro da empresa.</p>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-header">MÓDULO 2 – Comunicação e Tecnologias Acessíveis <span>(Clique para detalhes)</span></div>
+
+        <div class="course-item" data-id="comunicacao-inclusiva" onclick="openTopic('comunicacao-inclusiva')">
+          <div class="check" id="check-comunicacao-inclusiva"></div>
+          <div class="item-content">
+            <div class="item-title">Conceito de Comunicação Inclusiva</div>
+            <p class="item-text">Adapte forma e conteúdo para tornar a informação acessível e compreensível.</p>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="course-item" data-id="estrategias-comunicacao" onclick="openTopic('estrategias-comunicacao')">
+          <div class="check" id="check-estrategias-comunicacao"></div>
+          <div class="item-content">
+            <div class="item-title">Estratégias de Comunicação no Dia a Dia</div>
+            <p class="item-text">Use contato visual, iluminação adequada, clareza na fala e apoio visual.</p>
+            <div class="mini-tags">
+              <span class="mini-tag">Contato visual</span>
+              <span class="mini-tag">Clareza</span>
+              <span class="mini-tag">Apoio visual</span>
+            </div>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="course-item" data-id="tecnologias-assistivas" onclick="openTopic('tecnologias-assistivas')">
+          <div class="check" id="check-tecnologias-assistivas"></div>
+          <div class="item-content">
+            <div class="item-title">Tecnologias Assistivas</div>
+            <p class="item-text">Conheça ferramentas que ajudam a reduzir barreiras no ambiente corporativo.</p>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+
+        <div class="course-item" data-id="handtalk" onclick="openTopic('handtalk')">
+          <div class="check" id="check-handtalk"></div>
+          <div class="item-content">
+            <div class="item-title">Uso do Aplicativo Hand Talk</div>
+            <p class="item-text">Veja como o app pode apoiar a tradução de textos e áudios para Libras.</p>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-3-card">
+      <div class="module-header">MÓDULO 3 – Avaliação do Treinamento <span>(Clique para detalhes)</span></div>
+      <div class="course-item" data-id="avaliacao" onclick="openTopic('avaliacao')">
+        <div class="check" id="check-avaliacao"></div>
+        <div class="item-content">
+          <div class="item-title">Avaliação do Treinamento</div>
+          <p class="item-text">Questionário final para verificar o nível de compreensão dos participantes.</p>
+        </div>
+        <div class="arrow">›</div>
+      </div>
+    </div>
+
+    <p class="footer-note">Conecta Libras</p>
   </div>
-</div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">X</span>
-
-    <h2>Conteúdo do Treinamento</h2>
-
-    <p>
-Este material tem como objetivo apresentar, de forma clara e prática, conceitos sobre Libras, inclusão e acessibilidade no ambiente de trabalho.
-    </p>
-
-    <p>
-Ao longo do conteúdo, você vai entender a importância da comunicação inclusiva e conhecer estratégias e ferramentas que ajudam a reduzir barreiras no dia a dia.
-    </p>
-
-    <p>
-A proposta é incentivar atitudes mais respeitosas, acessíveis e colaborativas, contribuindo para um ambiente profissional mais inclusivo para todos.
-    </p>
-
-    <ul>
-      <li>Introdução à Libras</li>
-      <li>Inclusão no ambiente corporativo</li>
-      <li>Acessibilidade comunicacional</li>
-      <li>Cultura organizacional inclusiva</li>
-      <li>Comunicação inclusiva</li>
-      <li>Estratégias de comunicação no dia a dia</li>
-      <li>Tecnologias assistivas</li>
-      <li>Uso do aplicativo Hand Talk</li>
-      <li>Avaliação do treinamento</li>
-    </ul>
-
-    <p><strong>Bons estudos e aproveite o conteúdo!</strong></p>
-
+  <!-- Modal Conteúdo -->
+  <div class="modal-overlay" id="topicModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalItemTitle">Título</h5>
+        <button class="modal-close" onclick="closeTopicModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="modalItemContent"></div>
+        <div class="action-buttons" id="modalActions"></div>
+      </div>
+    </div>
   </div>
-</div>
 
-<script>
-function abrirModal(){
-  document.getElementById("modal").style.display = "flex";
-}
+  <!-- Modal treinamento -->
+  <div class="modal-overlay" id="trainingModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h5 class="modal-title">Conteúdo do Treinamento</h5>
+        <button class="modal-close" onclick="closeTrainingModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Este material tem como objetivo apresentar, de forma clara e prática, conceitos sobre Libras, inclusão e acessibilidade no ambiente de trabalho.
+          Ao longo do conteúdo, você vai entender a importância da comunicação inclusiva e conhecer estratégias e ferramentas que ajudam a reduzir barreiras no dia a dia.
+        </p>
 
-function fecharModal(){
-  document.getElementById("modal").style.display = "none";
-}
-</script>
+        <p>
+          A proposta é incentivar atitudes mais respeitosas, acessíveis e colaborativas, contribuindo para um ambiente profissional mais inclusivo para todos.
+        </p>
 
+        <p><strong>Conteúdos abordados:</strong></p>
+        <ul>
+          <li>Introdução à Libras</li>
+          <li>Inclusão no ambiente corporativo</li>
+          <li>Acessibilidade comunicacional</li>
+          <li>Cultura organizacional inclusiva</li>
+          <li>Comunicação inclusiva</li>
+          <li>Estratégias de comunicação no dia a dia</li>
+          <li>Tecnologias assistivas</li>
+          <li>Uso do aplicativo Hand Talk</li>
+          <li>Avaliação do treinamento</li>
+        </ul>
+
+        <p><strong>Bons estudos e aproveite o conteúdo!</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const topics = {
+      "intro-libras": {
+        title: "Introdução à Libras",
+        content: `
+          <p><strong>A Libras (Língua Brasileira de Sinais)</strong> é a língua utilizada pela comunidade surda no Brasil. Trata-se de uma língua de modalidade visual-espacial, com estrutura gramatical própria, independente da língua portuguesa.</p>
+          <p>Não deve ser confundida com mímica ou gestos improvisados, pois possui regras linguísticas definidas, incluindo formação de sinais, expressões faciais e organização sintática.</p>
+          <p><strong>Base legal:</strong> a Libras foi reconhecida como meio legal de comunicação e expressão pela Lei nº 10.436/2002, sendo regulamentada pelo Decreto nº 5.626/2005.</p>
+          <p><strong>Aplicação no contexto profissional:</strong></p>
+          <ul>
+            <li>Redução de barreiras na comunicação</li>
+            <li>Interações mais respeitosas e eficazes</li>
+            <li>Maior integração de profissionais surdos na equipe</li>
+          </ul>
+          <img src="img/alfabeto.jpg" alt="Alfabeto manual em Libras" class="modal-image">
+          <p>A imagem apresenta o alfabeto manual em Libras, utilizado para soletração de nomes próprios, siglas e palavras que ainda não possuem sinal específico.</p>
+        `,
+        links: [
+          { label: "Ver vídeo do alfabeto em Libras", url: "https://youtu.be/OiWI8feOQes" }
+        ]
+      },
+      "inclusao-corporativa": {
+        title: "Inclusão no Ambiente Corporativo",
+        content: `
+          <p>Inclusão no ambiente corporativo é o processo de estruturar a organização para receber, integrar e desenvolver profissionais surdos com equidade.</p>
+          <p><strong>Exemplos práticos:</strong></p>
+          <ul>
+            <li>Entrevistas com apoio de intérprete</li>
+            <li>Vagas com recursos acessíveis</li>
+            <li>Ferramentas digitais de apoio</li>
+            <li>Treinamentos com recursos visuais</li>
+            <li>Informações internas acessíveis</li>
+          </ul>
+        `
+      },
+      "acessibilidade-comunicacional": {
+        title: "Conceito de Acessibilidade Comunicacional",
+        content: `
+          <p>A acessibilidade comunicacional elimina barreiras que dificultam a compreensão das informações, especialmente para pessoas surdas.</p>
+          <ul>
+            <li>Legendas em vídeos</li>
+            <li>Recursos visuais em apresentações</li>
+            <li>Intérprete de Libras em reuniões</li>
+            <li>Tecnologias assistivas</li>
+            <li>Sinalizações visuais</li>
+          </ul>
+        `
+      },
+      "cultura-inclusiva": {
+        title: "Cultura Organizacional Inclusiva",
+        content: `
+          <p>É quando diversidade e inclusão fazem parte dos valores, práticas e decisões da empresa.</p>
+          <ul>
+            <li>Palestras e sensibilização</li>
+            <li>Workshops básicos de Libras</li>
+            <li>Comitês de diversidade</li>
+            <li>Capacitação de lideranças</li>
+            <li>Treinamentos sobre acessibilidade</li>
+          </ul>
+        `
+      },
+      "comunicacao-inclusiva": {
+        title: "Comunicação Inclusiva",
+        content: `
+          <p>É a adaptação intencional da forma e do conteúdo das mensagens para garantir compreensão por todos.</p>
+          <p>No contexto de pessoas surdas, isso envolve clareza, objetividade e apoio visual.</p>
+        `
+      },
+      "estrategias-comunicacao": {
+        title: "Estratégias de Comunicação no Dia a Dia",
+        content: `
+          <ul>
+            <li><strong>Contato visual</strong></li>
+            <li><strong>Iluminação adequada</strong></li>
+            <li><strong>Clareza na fala</strong></li>
+            <li><strong>Apoio visual</strong></li>
+          </ul>
+        `
+      },
+      "tecnologias-assistivas": {
+        title: "Tecnologias Assistivas",
+        content: `
+          <p>Recursos digitais ou físicos que apoiam a comunicação entre pessoas surdas e ouvintes.</p>
+          <ul>
+            <li>Google Meet / Teams com legendas</li>
+            <li>Hand Talk</li>
+            <li>Alertas visuais</li>
+            <li>Transcrição automática</li>
+          </ul>
+        `
+      },
+      "handtalk": {
+        title: "Uso do Aplicativo Hand Talk",
+        content: `
+          <p>O Hand Talk traduz textos e áudios para Libras com avatares virtuais.</p>
+          <img src="img/handtalk.jpg" alt="Aplicativo Hand Talk" class="modal-image">
+          <ul>
+            <li>Apoio em comunicações rápidas</li>
+            <li>Compreensão de instruções simples</li>
+            <li>Atendimentos iniciais</li>
+            <li>Reforço de informações acessíveis</li>
+          </ul>
+        `,
+        links: [
+          { label: "Abrir aplicativo Hand Talk", url: "https://play.google.com/store/apps/details?id=br.com.handtalk" }
+        ]
+      },
+      "avaliacao": {
+        title: "Avaliação do Treinamento",
+        content: `
+          <p><strong>Questionário de Avaliação</strong></p>
+          <p>Verifica o nível de compreensão dos participantes sobre os conteúdos abordados no treinamento.</p>
+        `,
+        links: [
+          { label: "Abrir formulário de avaliação", url: "https://forms.gle/SEU-LINK-AQUI" }
+        ]
+      }
+    };
+
+    const topicIds = Object.keys(topics);
+
+    function getDoneTopics() {
+      return JSON.parse(localStorage.getItem("conectaLibrasDone")) || [];
+    }
+
+    function saveDoneTopics(done) {
+      localStorage.setItem("conectaLibrasDone", JSON.stringify(done));
+    }
+
+    function markAsDone(id) {
+      const done = getDoneTopics();
+      if (!done.includes(id)) {
+        done.push(id);
+        saveDoneTopics(done);
+      }
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const done = getDoneTopics();
+      const total = topicIds.length;
+      const percent = Math.round((done.length / total) * 100);
+
+      document.getElementById("progressBar").style.width = percent + "%";
+      document.getElementById("progressBar").textContent = percent + "%";
+      document.getElementById("progressText").innerHTML = "<strong>" + percent + "% Concluído</strong>";
+
+      topicIds.forEach(id => {
+        const item = document.querySelector('[data-id="' + id + '"]');
+        const check = document.getElementById("check-" + id);
+        if (done.includes(id)) {
+          item.classList.add("done");
+          check.textContent = "✔";
+        } else {
+          item.classList.remove("done");
+          check.textContent = "";
+        }
+      });
+    }
+
+    function openTopic(id) {
+      const topic = topics[id];
+      document.getElementById("modalItemTitle").textContent = topic.title;
+      document.getElementById("modalItemContent").innerHTML = topic.content;
+
+      const actions = document.getElementById("modalActions");
+      actions.innerHTML = "";
+
+      if (topic.links) {
+        topic.links.forEach(link => {
+          const a = document.createElement("a");
+          a.href = link.url;
+          a.target = "_blank";
+          a.className = "btn-link";
+          a.textContent = link.label;
+          a.onclick = () => markAsDone(id);
+          actions.appendChild(a);
+        });
+      }
+
+      markAsDone(id);
+      document.getElementById("topicModal").classList.add("show");
+    }
+
+    function closeTopicModal() {
+      document.getElementById("topicModal").classList.remove("show");
+    }
+
+    function openTrainingModal() {
+      document.getElementById("trainingModal").classList.add("show");
+    }
+
+    function closeTrainingModal() {
+      document.getElementById("trainingModal").classList.remove("show");
+    }
+
+    function resetProgress() {
+      localStorage.removeItem("conectaLibrasDone");
+      updateProgress();
+    }
+
+    window.addEventListener("click", function(e) {
+      const topicModal = document.getElementById("topicModal");
+      const trainingModal = document.getElementById("trainingModal");
+      if (e.target === topicModal) closeTopicModal();
+      if (e.target === trainingModal) closeTrainingModal();
+    });
+
+    updateProgress();
+  </script>
 </body>
 </html>
