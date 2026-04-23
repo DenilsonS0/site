@@ -12,10 +12,10 @@
   <style>
     :root {
       --azul: #123f7c;
-      --azul-escuro: #0d376c;
-      --verde: #2faa5e;
-      --amarelo: #f3be26;
-      --texto: #243750;
+      --azul-escuro: #0f3b72;
+      --verde: #35a95e;
+      --amarelo: #f1bb22;
+      --texto: #26364d;
       --bg: #f3f5f7;
       --borda: #dbe2e9;
       --cinza: #f4f7fa;
@@ -38,33 +38,13 @@
       overflow-x: hidden;
     }
 
+    /* ===== TOPO ===== */
     .hero-section {
       background: linear-gradient(90deg, #edf4f8 0%, #eef5f7 55%, #eef5ef 100%);
-      border-bottom: 1px solid #dfe5eb;
-      overflow: hidden;
       position: relative;
-      padding-top: 18px;
-    }
-
-    .hero-section::before,
-    .hero-section::after {
-      content: "";
-      position: absolute;
-      top: 84px;
-      width: 180px;
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #1787d7 0%, #1787d7 30%, #34ad60 30%, #34ad60 100%);
-      opacity: 0.95;
-      z-index: 1;
-    }
-
-    .hero-section::before {
-      left: 24px;
-    }
-
-    .hero-section::after {
-      right: 24px;
+      overflow: hidden;
+      padding-top: 28px;
+      border-bottom: 1px solid #dde4ea;
     }
 
     .hero-inner {
@@ -72,41 +52,74 @@
       z-index: 2;
     }
 
-    .hero-top-row {
+    .hero-art-top {
+      display: grid;
+      grid-template-columns: 150px 230px 1fr 330px 150px;
+      align-items: center;
+      gap: 18px;
+      min-height: 248px;
+    }
+
+    .hero-line-left,
+    .hero-line-middle,
+    .hero-line-right {
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        #1688d8 0%,
+        #1688d8 28%,
+        #34ad60 28%,
+        #34ad60 100%
+      );
+    }
+
+    .hero-logo-wrap {
       display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      margin-bottom: 12px;
+      align-items: center;
+      justify-content: center;
     }
 
     .hero-logo {
       width: 100%;
-      max-width: 170px;
+      max-width: 220px;
       height: auto;
       display: block;
+      object-fit: contain;
     }
 
-    .hero-mid-line {
-      flex: 1;
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #1787d7 0%, #1787d7 28%, #34ad60 28%, #34ad60 100%);
-      margin-top: 52px;
-      opacity: 0.95;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 10px;
+    .hero-character-wrap {
+      display: flex;
+      justify-content: center;
       align-items: end;
-      min-height: 380px;
+      height: 100%;
     }
 
-    .hero-left {
-      padding-bottom: 0;
+    .hero-character {
+      width: 100%;
+      max-width: 355px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .hero-bottom-box {
+      background: rgba(255, 255, 255, 0.96);
+      margin-top: -10px;
+      padding: 8px 0 14px;
       position: relative;
-      z-index: 3;
+      z-index: 5;
+    }
+
+    .hero-bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-text-side {
+      padding-top: 2px;
     }
 
     .hero-label {
@@ -114,62 +127,45 @@
       font-size: 1rem;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: inline-block;
     }
 
     .hero-label::after {
       content: "";
       display: block;
-      width: 64px;
+      width: 60px;
       height: 4px;
-      background: var(--verde);
       border-radius: 999px;
-      margin-top: 7px;
+      background: var(--verde);
+      margin-top: 6px;
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 3.5vw, 4.3rem);
+      font-size: clamp(2rem, 3.2vw, 3.9rem);
       line-height: 1.02;
       letter-spacing: -0.03em;
       font-weight: 900;
       color: var(--azul-escuro);
-      margin: 0 0 16px 0;
-      max-width: 830px;
+      margin: 0 0 12px 0;
     }
 
     .hero-title .green {
       color: var(--verde);
     }
 
-    .hero-bottom-strip {
-      background: rgba(255, 255, 255, 0.88);
-      padding: 18px 0 12px;
-      position: relative;
-      z-index: 4;
-      margin-top: 6px;
-    }
-
-    .hero-bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr 330px;
-      align-items: center;
-      gap: 28px;
-    }
-
     .hero-description {
       margin: 0;
-      font-size: 1.02rem;
-      line-height: 1.5;
-      color: #294563;
-      max-width: 700px;
+      font-size: 1rem;
+      line-height: 1.35;
+      color: #25425f;
+      max-width: 760px;
     }
 
     .hero-cta-side {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      align-items: stretch;
     }
 
     .hero-btn {
@@ -181,12 +177,12 @@
       font-size: 1rem;
       font-weight: 900;
       width: 100%;
-      box-shadow: 0 8px 18px rgba(243, 190, 38, 0.25);
+      box-shadow: 0 8px 18px rgba(241, 187, 34, 0.22);
       transition: 0.25s ease;
     }
 
     .hero-btn:hover {
-      background: #e6b11f;
+      background: #e0ad1d;
       transform: translateY(-2px);
     }
 
@@ -195,14 +191,14 @@
       align-items: center;
       gap: 9px;
       color: #294563;
-      font-size: 0.95rem;
-      line-height: 1.35;
+      font-size: 0.92rem;
+      line-height: 1.3;
     }
 
     .hero-note-icon {
-      width: 22px;
-      height: 22px;
-      min-width: 22px;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
       border-radius: 50%;
       border: 2px solid var(--verde);
       display: flex;
@@ -210,29 +206,11 @@
       justify-content: center;
       color: var(--verde);
       background: #fff;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 800;
     }
 
-    .hero-right {
-      min-height: 360px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: end;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-right img {
-      width: 100%;
-      max-width: 455px;
-      height: auto;
-      display: block;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.08));
-      margin-right: 8px;
-    }
-
+    /* ===== CONTEÚDO ===== */
     .main-content {
       padding: 26px 0 40px;
     }
@@ -430,6 +408,7 @@
       font-weight: 800;
     }
 
+    /* ===== MODAL ===== */
     .modal-header {
       background: var(--azul);
       color: #fff;
@@ -475,12 +454,14 @@
     }
 
     @media (max-width: 1199px) {
-      .hero-bottom-grid {
-        grid-template-columns: 1fr;
+      .hero-art-top {
+        grid-template-columns: 90px 200px 1fr 290px 90px;
+        gap: 14px;
+        min-height: 220px;
       }
 
-      .hero-cta-side {
-        max-width: 400px;
+      .hero-bottom-grid {
+        grid-template-columns: 1fr 320px;
       }
 
       .content-header {
@@ -493,25 +474,33 @@
     }
 
     @media (max-width: 991px) {
-      .hero-section::before,
-      .hero-section::after {
+      .hero-art-top {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 14px;
+      }
+
+      .hero-line-left,
+      .hero-line-middle,
+      .hero-line-right {
         display: none;
       }
 
-      .hero-grid {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero-right {
+      .hero-logo-wrap,
+      .hero-character-wrap {
         justify-content: center;
-        min-height: auto;
-        margin-top: 10px;
       }
 
-      .hero-right img {
-        max-width: 330px;
-        margin-right: 0;
+      .hero-character {
+        max-width: 270px;
+      }
+
+      .hero-bottom-box {
+        margin-top: 0;
+      }
+
+      .hero-bottom-grid {
+        grid-template-columns: 1fr;
       }
 
       .modules-grid {
@@ -520,30 +509,24 @@
     }
 
     @media (max-width: 576px) {
-      .hero-top-row {
-        flex-direction: column;
-        gap: 12px;
+      .hero-section {
+        padding-top: 18px;
       }
 
       .hero-logo {
-        max-width: 150px;
-      }
-
-      .hero-mid-line {
-        width: 100%;
-        margin-top: 0;
+        max-width: 180px;
       }
 
       .hero-title {
-        font-size: 2.15rem;
+        font-size: 2rem;
       }
 
       .hero-description {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
       }
 
       .hero-btn {
-        font-size: .94rem;
+        font-size: 0.95rem;
         padding: 15px 14px;
       }
 
@@ -588,44 +571,50 @@
     <section class="hero-section">
       <div class="container hero-inner">
 
-        <div class="hero-top-row">
-          <img src="img/logo-conecta.png" alt="Logo Conecta Libras" class="hero-logo">
-          <div class="hero-mid-line"></div>
+        <div class="hero-art-top">
+          <div class="hero-line-left"></div>
+
+          <div class="hero-logo-wrap">
+            <img src="img/logo-conecta.png" alt="Logo Conecta Libras" class="hero-logo">
+          </div>
+
+          <div class="hero-line-middle"></div>
+
+          <div class="hero-character-wrap">
+            <img src="img/topo-personagem.png" alt="Ilustração Conecta Libras" class="hero-character">
+          </div>
+
+          <div class="hero-line-right"></div>
         </div>
 
-        <div class="hero-grid">
-          <div class="hero-left">
-            <div class="hero-label">TREINAMENTO:</div>
+        <div class="hero-bottom-box">
+          <div class="hero-bottom-grid">
+            <div class="hero-text-side">
+              <div class="hero-label">TREINAMENTO:</div>
 
-            <h1 class="hero-title">
-              Incluindo Pessoas Surdas no <span class="green">Ambiente Corporativo</span>
-            </h1>
+              <h1 class="hero-title">
+                Incluindo Pessoas no <span class="green">Ambiente Corporativo</span>
+              </h1>
 
-            <div class="hero-bottom-strip">
-              <div class="hero-bottom-grid">
-                <p class="hero-description">
-                  Capacite sua equipe para criar um ambiente mais inclusivo e acessível.
-                  Aprenda Libras básica, comunicação inclusiva e o uso de tecnologias assistivas.
-                </p>
+              <p class="hero-description">
+                Capacite sua equipe para criar um ambiente mais inclusivo e acessível.
+                Aprenda Libras básica, comunicação inclusiva e o uso de tecnologias assistivas.
+              </p>
+            </div>
 
-                <div class="hero-cta-side">
-                  <button class="hero-btn" data-bs-toggle="modal" data-bs-target="#modalTreinamento">
-                    CONTEÚDO DO TREINAMENTO →
-                  </button>
+            <div class="hero-cta-side">
+              <button class="hero-btn" data-bs-toggle="modal" data-bs-target="#modalTreinamento">
+                CONTEÚDO DO TREINAMENTO →
+              </button>
 
-                  <div class="hero-note">
-                    <div class="hero-note-icon">✓</div>
-                    <div>Libras básica e tecnologias acessíveis para comunicação</div>
-                  </div>
-                </div>
+              <div class="hero-note">
+                <div class="hero-note-icon">✓</div>
+                <div>Libras básica e tecnologias acessíveis para comunicação</div>
               </div>
             </div>
           </div>
-
-          <div class="hero-right">
-            <img src="img/topo-personagem.png" alt="Ilustração Conecta Libras">
-          </div>
         </div>
+
       </div>
     </section>
 
