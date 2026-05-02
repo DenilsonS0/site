@@ -1344,7 +1344,7 @@
       doc.text("Conecta", x, y + 24, { align: "center" });
     }
 
-          function gerarCertificadoPDF() {
+            function gerarCertificadoPDF() {
       const avaliacaoAberta = localStorage.getItem("conectaLibrasAvaliacaoAberta") === "sim";
       const avaliacaoConfirmada = localStorage.getItem("conectaLibrasAvaliacaoConfirmada") === "sim";
       const nomeInput = document.getElementById("nomeCertificado");
@@ -1366,7 +1366,7 @@
 
       if (nome.length < 5) {
         if (alerta) {
-          alerta.textContent = "ESSE CARAIO COLOQUE A PORRA DO SEU NIME TODO.";
+          alerta.textContent = "Digite seu nome completo.";
           alerta.style.display = "block";
         }
         return;
@@ -1392,7 +1392,7 @@
         doc.setTextColor(10, 30, 80);
         doc.text(nome, 148.5, 98, { align: "center" });
 
-        // DATA FORMATADA PARA O CAMPO "__ de ______ de 20__"
+        // DATA FORMATADA
         const agora = new Date();
         const dia = String(agora.getDate()).padStart(2, "0");
 
@@ -1408,10 +1408,10 @@
         doc.setFontSize(10);
         doc.setTextColor(10, 30, 80);
 
-        // Dia, mês e final do ano alinhados nos espaços do certificado
-        doc.text(dia, 119, 185, { align: "center" });
-        doc.text(mes, 148.5, 185, { align: "center" });
-        doc.text(anoFinal, 178, 185, { align: "center" });
+        // POSIÇÃO AJUSTADA DA DATA
+        doc.text(dia, 84, 185, { align: "center" });
+        doc.text(mes, 132, 185, { align: "center" });
+        doc.text(anoFinal, 184, 185, { align: "center" });
 
         const nomeArquivo =
           "certificado-" +
