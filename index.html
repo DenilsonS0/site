@@ -1344,7 +1344,7 @@
       doc.text("Conecta", x, y + 24, { align: "center" });
     }
 
-            function gerarCertificadoPDF() {
+          function gerarCertificadoPDF() {
       const avaliacaoAberta = localStorage.getItem("conectaLibrasAvaliacaoAberta") === "sim";
       const avaliacaoConfirmada = localStorage.getItem("conectaLibrasAvaliacaoConfirmada") === "sim";
       const nomeInput = document.getElementById("nomeCertificado");
@@ -1392,9 +1392,8 @@
         doc.setTextColor(10, 30, 80);
         doc.text(nome, 148.5, 98, { align: "center" });
 
-        // DATA FORMATADA SEPARADA
+        // DATA FORMATADA PARA O CAMPO "__ de ______ de 20__"
         const agora = new Date();
-
         const dia = String(agora.getDate()).padStart(2, "0");
 
         const meses = [
@@ -1403,16 +1402,16 @@
         ];
 
         const mes = meses[agora.getMonth()];
-        const ano = agora.getFullYear();
+        const anoFinal = String(agora.getFullYear()).slice(2);
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(10);
         doc.setTextColor(10, 30, 80);
 
-        // Ajustado para preencher os espaços: "__ de ______ de 20__"
-        doc.text(dia, 132, 185, { align: "center" });
-        doc.text(mes, 151, 185, { align: "center" });
-        doc.text(String(ano).slice(2), 174, 185, { align: "center" });
+        // Dia, mês e final do ano alinhados nos espaços do certificado
+        doc.text(dia, 119, 185, { align: "center" });
+        doc.text(mes, 148.5, 185, { align: "center" });
+        doc.text(anoFinal, 178, 185, { align: "center" });
 
         const nomeArquivo =
           "certificado-" +
