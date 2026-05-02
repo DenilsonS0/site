@@ -1344,7 +1344,7 @@
       doc.text("Conecta", x, y + 24, { align: "center" });
     }
 
-      function gerarCertificadoPDF() {
+         function gerarCertificadoPDF() {
       const avaliacaoAberta = localStorage.getItem("conectaLibrasAvaliacaoAberta") === "sim";
       const avaliacaoConfirmada = localStorage.getItem("conectaLibrasAvaliacaoConfirmada") === "sim";
       const nomeInput = document.getElementById("nomeCertificado");
@@ -1356,7 +1356,7 @@
 
       if (!avaliacaoAberta || !avaliacaoConfirmada) {
         if (alerta) {
-          alerta.textContent = "Responda a avaliação e confirme antes de gerar o certificado.";
+          alerta.textContent = "Responda a avaliação antes de gerar o certificado.";
           alerta.style.display = "block";
         }
         return;
@@ -1386,38 +1386,34 @@
       img.onload = function () {
         doc.addImage(img, "JPG", 0, 0, 297, 210);
 
+        // NOME
         doc.setFont("times", "italic");
-        doc.setFontSize(34);
-        doc.setTextColor(8, 35, 85);
-        doc.text(nome, 148.5, 104, { align: "center" });
+        doc.setFontSize(36);
+        doc.setTextColor(10, 30, 80);
+        doc.text(nome, 148.5, 110, { align: "center" });
 
-        const data = new Date().toLocaleDateString("pt-BR", {
+        // DATA + HORA
+        const agora = new Date();
+        const dataHora = agora.toLocaleString("pt-BR", {
           day: "2-digit",
           month: "long",
-          year: "numeric"
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
         });
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(11);
-        doc.setTextColor(8, 35, 85);
-        doc.text(data, 148.5, 189, { align: "center" });
+        doc.text(dataHora, 148.5, 190, { align: "center" });
 
-        const nomeArquivo =
-          "certificado-conecta-libras-" +
-          nome.toLowerCase()
-            .replace(/\s+/g, "-")
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "") +
-          ".pdf";
-
-        doc.save(nomeArquivo);
+        doc.save("certificado.pdf");
 
         if (sucesso) sucesso.style.display = "block";
       };
 
       img.onerror = function () {
         if (alerta) {
-          alerta.textContent = "Imagem não encontrada. Confira se está em img/certificado-modelo.jpg";
+          alerta.textContent = "Imagem não encontrada em img/certificado-modelo.jpg";
           alerta.style.display = "block";
         }
       };
