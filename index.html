@@ -1344,7 +1344,7 @@
       doc.text("Conecta", x, y + 24, { align: "center" });
     }
 
-    function gerarCertificadoPDF() {
+      function gerarCertificadoPDF() {
       const avaliacaoAberta = localStorage.getItem("conectaLibrasAvaliacaoAberta") === "sim";
       const avaliacaoConfirmada = localStorage.getItem("conectaLibrasAvaliacaoConfirmada") === "sim";
       const nomeInput = document.getElementById("nomeCertificado");
@@ -1355,7 +1355,10 @@
       if (sucesso) sucesso.style.display = "none";
 
       if (!avaliacaoAberta || !avaliacaoConfirmada) {
-        if (alerta) alerta.style.display = "block";
+        if (alerta) {
+          alerta.textContent = "Responda a avaliação e confirme antes de gerar o certificado.";
+          alerta.style.display = "block";
+        }
         return;
       }
 
@@ -1363,180 +1366,61 @@
 
       if (nome.length < 5) {
         if (alerta) {
-          alerta.textContent = "Digite seu nome completo para gerar o certificado.";
+          alerta.textContent = "Digite seu nome completo.";
           alerta.style.display = "block";
         }
         return;
       }
 
       const { jsPDF } = window.jspdf;
+
       const doc = new jsPDF({
         orientation: "landscape",
         unit: "mm",
         format: "a4"
       });
 
-      const pageW = 297;
-      const pageH = 210;
+      const img = new Image();
+      img.src = "img/certificado-modelo.jpg";
 
-      // Fundo
-      doc.setFillColor(255, 255, 255);
-      doc.rect(0, 0, pageW, pageH, "F");
+      img.onload = function () {
+        doc.addImage(img, "JPG", 0, 0, 297, 210);
 
-      // Bordas douradas
-      doc.setDrawColor(199, 154, 39);
-      doc.setLineWidth(0.8);
-      doc.roundedRect(8, 8, pageW - 16, pageH - 16, 6, 6, "S");
+        doc.setFont("times", "italic");
+        doc.setFontSize(34);
+        doc.setTextColor(8, 35, 85);
+        doc.text(nome, 148.5, 104, { align: "center" });
 
-      doc.setDrawColor(229, 188, 72);
-      doc.setLineWidth(0.4);
-      doc.roundedRect(12, 12, pageW - 24, pageH - 24, 4, 4, "S");
+        const data = new Date().toLocaleDateString("pt-BR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric"
+        });
 
-      // Ondas decorativas
-      doc.setFillColor(13, 55, 108);
-      doc.triangle(0, 0, 62, 0, 0, 42, "F");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.setTextColor(8, 35, 85);
+        doc.text(data, 148.5, 189, { align: "center" });
 
-      doc.setFillColor(47, 170, 94);
-      doc.triangle(0, 28, 72, 0, 0, 52, "F");
+        const nomeArquivo =
+          "certificado-conecta-libras-" +
+          nome.toLowerCase()
+            .replace(/\s+/g, "-")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") +
+          ".pdf";
 
-      doc.setFillColor(13, 55, 108);
-      doc.triangle(pageW, pageH, pageW - 64, pageH, pageW, pageH - 45, "F");
+        doc.save(nomeArquivo);
 
-      doc.setFillColor(47, 170, 94);
-      doc.triangle(pageW, pageH - 28, pageW - 78, pageH, pageW, pageH - 58, "F");
+        if (sucesso) sucesso.style.display = "block";
+      };
 
-      // Logo textual
-      doc.setTextColor(13, 55, 108);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(22);
-      doc.text("Conecta", 42, 43);
-
-      doc.setTextColor(47, 170, 94);
-      doc.text("Libras", 42, 54);
-
-      doc.setTextColor(45, 45, 45);
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(8);
-      doc.text("Inclusão que Comunica", 42, 61);
-
-      // Símbolo simples do logo
-      doc.setDrawColor(13, 55, 108);
-      doc.setLineWidth(3);
-      doc.line(24, 45, 34, 38);
-      doc.setDrawColor(47, 170, 94);
-      doc.line(34, 38, 42, 45);
-
-      // Selo
-      desenharSelo(doc, 242, 50);
-
-      // Título
-      doc.setTextColor(13, 55, 108);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(38);
-      doc.text("CERTIFICADO", pageW / 2, 45, { align: "center" });
-
-      doc.setFillColor(47, 170, 94);
-      doc.rect(108, 55, 82, 13, "F");
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(16);
-      doc.text("DE CONCLUSÃO", pageW / 2, 64, { align: "center" });
-
-      // Linha decorativa
-      doc.setDrawColor(199, 154, 39);
-      doc.setLineWidth(0.4);
-      doc.line(95, 25, 132, 25);
-      doc.line(165, 25, 202, 25);
-      doc.setFillColor(241, 187, 34);
-      doc.circle(145, 25, 1.5, "F");
-      doc.circle(151, 25, 1.5, "F");
-
-      // Certificamos
-      doc.setTextColor(13, 55, 108);
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(15);
-      doc.text("Certificamos que", pageW / 2, 84, { align: "center" });
-
-      // Nome
-      doc.setFont("times", "italic");
-      doc.setFontSize(30);
-      doc.setTextColor(13, 35, 82);
-      doc.text(nome, pageW / 2, 106, { align: "center" });
-
-      doc.setDrawColor(199, 154, 39);
-      doc.setLineWidth(0.5);
-      doc.line(72, 114, 225, 114);
-
-      // Texto central
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(13);
-      doc.setTextColor(43, 58, 82);
-      doc.text("concluiu com êxito o treinamento", pageW / 2, 126, { align: "center" });
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(18);
-      doc.setTextColor(13, 55, 108);
-      doc.text("INCLUINDO PESSOAS NO", pageW / 2, 139, { align: "center" });
-
-      doc.setTextColor(47, 170, 94);
-      doc.text("AMBIENTE CORPORATIVO", pageW / 2, 150, { align: "center" });
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-      doc.setTextColor(43, 58, 82);
-      const texto = "Parabéns por investir em conhecimento e contribuir para um ambiente de trabalho mais inclusivo, acessível e humano.";
-      const linhas = quebrarTextoPDF(doc, texto, 145);
-      doc.text(linhas, pageW / 2, 162, { align: "center" });
-
-      // Check central
-      doc.setDrawColor(47, 170, 94);
-      doc.setLineWidth(1);
-      doc.circle(pageW / 2, 176, 7, "S");
-      doc.setTextColor(47, 170, 94);
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.text("✓", pageW / 2, 180, { align: "center" });
-
-      // Rodapé
-      doc.setDrawColor(199, 154, 39);
-      doc.setLineWidth(0.5);
-      doc.line(38, 185, 105, 185);
-
-      doc.setTextColor(13, 35, 82);
-      doc.setFont("times", "italic");
-      doc.setFontSize(20);
-      doc.text("Coordenação", 54, 178);
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(9);
-      doc.setTextColor(43, 58, 82);
-      doc.text("Coordenação Conecta Libras", 38, 193);
-      doc.text("Inclusão que Comunica", 38, 198);
-
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(10);
-      doc.setTextColor(13, 55, 108);
-      doc.text(formatarDataCertificado(), pageW / 2, 191, { align: "center" });
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(9);
-      doc.setTextColor(43, 58, 82);
-      doc.text("Data de Conclusão", pageW / 2, 198, { align: "center" });
-
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(9);
-      doc.text("Certificado", 230, 192);
-      doc.text("de participação", 230, 198);
-
-      doc.setDrawColor(13, 55, 108);
-      doc.circle(220, 192, 7, "S");
-      doc.setTextColor(13, 55, 108);
-      doc.setFontSize(10);
-      doc.text("PDF", 220, 195, { align: "center" });
-
-      const nomeArquivo = "certificado-conecta-libras-" + nome.toLowerCase().replace(/\s+/g, "-").normalize("NFD").replace(/[\u0300-\u036f]/g, "") + ".pdf";
-      doc.save(nomeArquivo);
-
-      if (sucesso) sucesso.style.display = "block";
+      img.onerror = function () {
+        if (alerta) {
+          alerta.textContent = "Imagem não encontrada. Confira se está em img/certificado-modelo.jpg";
+          alerta.style.display = "block";
+        }
+      };
     }
 
     updateProgress();
