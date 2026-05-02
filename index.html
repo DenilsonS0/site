@@ -1344,7 +1344,7 @@
       doc.text("Conecta", x, y + 24, { align: "center" });
     }
 
-         function gerarCertificadoPDF() {
+           function gerarCertificadoPDF() {
       const avaliacaoAberta = localStorage.getItem("conectaLibrasAvaliacaoAberta") === "sim";
       const avaliacaoConfirmada = localStorage.getItem("conectaLibrasAvaliacaoConfirmada") === "sim";
       const nomeInput = document.getElementById("nomeCertificado");
@@ -1386,11 +1386,11 @@
       img.onload = function () {
         doc.addImage(img, "JPG", 0, 0, 297, 210);
 
-        // NOME
+        // NOME DO PARTICIPANTE
         doc.setFont("times", "italic");
         doc.setFontSize(36);
         doc.setTextColor(10, 30, 80);
-        doc.text(nome, 148.5, 110, { align: "center" });
+        doc.text(nome, 148.5, 108, { align: "center" });
 
         // DATA + HORA
         const agora = new Date();
@@ -1404,9 +1404,18 @@
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(11);
-        doc.text(dataHora, 148.5, 190, { align: "center" });
+        doc.setTextColor(10, 30, 80);
+        doc.text(dataHora, 148.5, 185, { align: "center" });
 
-        doc.save("certificado.pdf");
+        const nomeArquivo =
+          "certificado-" +
+          nome.toLowerCase()
+            .replace(/\s+/g, "-")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") +
+          ".pdf";
+
+        doc.save(nomeArquivo);
 
         if (sucesso) sucesso.style.display = "block";
       };
